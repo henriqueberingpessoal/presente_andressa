@@ -1,0 +1,432 @@
+/* Reset básico e fontes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #fff5f5; /* Um rosa bem clarinho, elegante */
+    color: #4a4a4a;
+    overflow-x: hidden;
+}
+
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Seção Inicial (Hero) com Imagem de Fundo */
+.hero-section {
+    /* Substituímos o degradê pela imagem, mas mantemos um degradê rosa escuro sutil por cima
+       para dar um tom romântico e ajudar na leitura */
+    background-image: linear-gradient(rgba(255, 77, 109, 0.4), rgba(30, 10, 10, 0.7)), url('imagens/image_1.jpeg');
+    
+    /* Configurações para cobrir toda a tela sem distorcer */
+    background-size: cover;
+    background-position: center top; /* Centraliza a foto horizontalmente e alinha ao topo */
+    background-repeat: no-repeat;
+    
+    color: white; /* Garante que o texto seja branco e claro */
+}
+
+.hero-section h1 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    
+    /* Aumentamos um pouco a sombra do texto para máxima legibilidade */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+}
+
+.hero-section p {
+    font-size: 1.1rem;
+    max-width: 90%;
+    /* Adicionamos uma sombra leve também no parágrafo */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Mantemos a animação do coração igual */
+.heart {
+    font-size: 5rem;
+    animation: pulsar 1.2s infinite;
+    margin-bottom: 20px;
+}
+
+/* Animação do Coração Pulsando */
+@keyframes pulsar {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* Estilos básicos para as outras seções */
+.memes-section h2, .gallery-section h2 {
+    color: #ff4d6d;
+    margin-bottom: 20px;
+}
+
+/* Estilo base dos Cards (Fundo branco e sombra) */
+.card-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card p {
+    padding: 15px;
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* --- Ajustes para Cards com Múltiplas Imagens --- */
+
+/* Quando o card tem só 1 foto normal */
+.card > img {
+    max-height: 350px;
+    object-fit: cover;
+}
+
+/* Agrupamento de fotos */
+.card-img-group {
+    display: grid;
+    gap: 2px; /* Espaço bem fininho entre as fotos no mesmo card */
+}
+
+/* Duas fotos: uma do lado da outra */
+.grid-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Três fotos: a primeira grandona em cima, e duas menores embaixo */
+.grid-3 {
+    grid-template-columns: 1fr 1fr;
+}
+.grid-3 img:first-child {
+    grid-column: span 2; 
+}
+
+/* Garante que todas as fotos agrupadas fiquem do mesmo tamanho sem distorcer */
+.card-img-group img {
+    width: 100%;
+    height: 180px; 
+    object-fit: cover;
+    display: block;
+}
+
+/* --- Atualização: Seção de Momentos em Azul --- */
+
+/* Esta é a regra principal que muda o fundo e o estilo da seção inteira */
+.memes-section {
+    /* Escolhi um azul pastel suave e romântico, a cor favorita dela! */
+    background-color: #bbdefb; 
+    
+    /* Adicionando alguns toques especiais: */
+    padding: 60px 20px; /* Aumentei o espaçamento para a seção respirar */
+    border-radius: 20px; /* Adicionei cantos arredondados */
+    margin: 20px; /* Adicionei uma margem para que a seção "flutue" na tela */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Uma sombra leve para profundidade */
+}
+
+/* Ajustando as cores do texto para ficarem perfeitas no novo fundo azul */
+.memes-section h2 {
+    color: #0d47a1; /* Um azul mais escuro e profundo para o título */
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.memes-section p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: #333; /* Escureci o texto para máxima legibilidade */
+    max-width: 90%;
+}
+
+/* Ajuste nos cards para combinarem com a nova seção flutuante */
+.card-container {
+    max-width: 350px;
+    margin: 0 auto; /* Centraliza os cards */
+}
+
+/* --- Modal de Preview de Foto (Segurar para ver) --- */
+.modal {
+    position: fixed; /* Fica fixo na tela, por cima de tudo */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85); /* Fundo preto quase totalmente escuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que fique na frente de tudo no site */
+    
+    /* Começa invisível e não interfere nos cliques */
+    opacity: 0; 
+    pointer-events: none; 
+    transition: opacity 0.2s ease; /* Efeito suave ao aparecer/sumir */
+}
+
+/* Classe que o JavaScript vai adicionar para mostrar a foto */
+.modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* A foto em tela cheia */
+.modal img {
+    max-width: 95%;
+    max-height: 90%;
+    border-radius: 15px;
+    object-fit: contain; /* Garante que a foto toda caiba na tela sem cortar */
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+}
+
+/* IMPORTANTÍSSIMO PARA IPHONE: Bloqueia o menu de "Salvar Imagem" ao segurar */
+.card img {
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+/* --- Configuração da Galeria de Fotos Favoritas (Grade) --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 fotos por linha */
+    gap: 12px; /* Espaço entre as fotos */
+    width: 100%;
+    max-width: 350px; /* Largura ideal para a tela do celular */
+    margin: 0 auto;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 160px; /* Mantém todas as fotos com a mesma altura */
+    object-fit: cover; /* Corta a foto perfeitamente sem achatar o rosto */
+    border-radius: 12px; /* Cantinhos arredondados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra elegante */
+    border: 3px solid white; /* Borda branca para dar um charme de Polaroid */
+    
+    /* Bloqueia o menu do celular igual fizemos nos cards */
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+/* Fundo da seção de momentos favoritos */
+/* --- Fundo da seção de momentos favoritos (Degradê Suave) --- */
+.gallery-section {
+    /* O degradê começando com a cor de fundo original e descendo para o branco puro */
+    background: linear-gradient(to bottom, #ffe6ea, #ffffff); 
+    
+    /* Adicionando um preenchimento para a seção respirar */
+    padding: 60px 20px;
+    
+    /* Curvinha elegante na transição entre a seção azul e esta */
+    border-top-left-radius: 30px; 
+    border-top-right-radius: 30px;
+    
+    /* Puxando a margem um pouco para cima para o arredondamento encaixar perfeito */
+    margin-top: -10px; 
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Botão de Fechar (X) da Galeria --- */
+#close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001; /* Garante que fique acima da foto */
+}
+
+/* Um efeitinho para quando ela encostar no X, ele ficar rosa */
+#close-btn:active {
+    color: #ff4d6d;
+}
+
+/* --- Estilização da Legenda das Fotos da Galeria --- */
+#gallery-modal {
+    flex-direction: column; /* Faz o texto se posicionar obrigatoriamente abaixo da foto */
+}
+
+#gallery-modal-caption {
+    color: white;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 15px;
+    padding: 0 20px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); /* Sombra preta para dar leitura perfeita */
+    max-width: 90%;
+    z-index: 1001;
+    font-weight: 500;
+}
+
+/* --- Seção de Elogios (Visual Livre e Fotos Maiores) --- */
+.elogios-section {
+    background-color: #ffffff;
+    padding: 50px 20px;
+}
+
+.elogios-section h2 {
+    color: #d81159; 
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.elogios-section > p {
+    margin-bottom: 45px; /* Mais espaço antes de começar as fotos */
+    color: #555;
+    font-size: 1rem;
+    max-width: 90%;
+}
+
+.elogio-container {
+    display: flex;
+    flex-direction: column;
+    gap: 45px; /* Espaço generoso entre cada foto para leitura fluida */
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* O item livre (sem bordas ou fundos de card) */
+.elogio-item {
+    display: flex;
+    align-items: center;
+    gap: 18px; /* Espaço entre a foto gigante e o texto */
+}
+
+/* Inverte a ordem para a foto ficar na direita */
+.elogio-item.inverte {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+/* Deixa as fotos BEM maiores com bordas arredondadas elegantes */
+.elogio-item img {
+    width: 150px; /* Quase o dobro do tamanho anterior! */
+    height: 200px; /* Formato retrato que valoriza pessoas */
+    object-fit: cover; 
+    border-radius: 18px; /* Bordas de celular premium */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Sombra bonita pra destacar */
+    flex-shrink: 0; /* Impede o texto de esmagar a foto */
+}
+
+.elogio-texto {
+    flex: 1; /* Ocupa todo o espaço restante do lado da foto */
+}
+
+.elogio-texto h3 {
+    color: #ff4d6d;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.elogio-texto p {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.5;
+}
+
+/* --- Estilo para o texto menorzinho abaixo do elogio --- */
+.elogio-texto small {
+    display: block; /* Garante que ele pule para a linha de baixo */
+    font-size: 0.7rem; /* Deixa o texto visivelmente menor */
+    color: #888; /* Um cinza mais clarinho para não brigar com o texto principal */
+    margin-top: 6px; /* Dá um respiro entre o parágrafo e ele */
+    font-style: italic; /* Deixa em itálico para dar um charme especial */
+}
+
+/* --- Seção da Surpresa Final --- */
+.surprise-section {
+    background-color: #ffffff;
+    padding: 20px 20px 80px; /* Dá um espaço gostoso no final da página */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* O Botão Mágico (Agora em tom de Azul) */
+#surprise-btn {
+    background-color: #42a5f5; /* Um azul vibrante e alegre */
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(66, 165, 245, 0.4); /* Sombra azulada acompanhando o botão */
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.5s ease;
+    animation: pulsar 2s infinite; 
+    font-family: inherit;
+}
+
+/* Quando ela clica no botão */
+#surprise-btn:active {
+    transform: scale(0.95);
+    background-color: #1e88e5; /* Um azul um pouquinho mais escuro para o efeito de clique */
+}
+
+/* A Cartinha (Escondida por padrão) */
+.hidden-letter {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.8s ease; 
+    
+    background: #e3f2fd; /* Um azul bebê bem suave, romântico e delicado */
+    border-radius: 15px;
+    border: 2px dashed #90caf9; /* Bordinha pontilhada num azul um tom mais escuro para dar destaque */
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Classe que o JS vai colocar para mostrar a cartinha */
+.hidden-letter.show {
+    max-height: 2500px; /* Espaço de sobra pro seu texto */
+    opacity: 1;
+    margin-top: 20px;
+    padding: 30px 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.hidden-letter h3 {
+    color: #d81159;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.hidden-letter p {
+    color: #4a4a4a;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
