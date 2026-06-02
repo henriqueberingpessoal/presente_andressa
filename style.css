@@ -26,7 +26,7 @@ section {
 .hero-section {
     /* Substituímos o degradê pela imagem, mas mantemos um degradê rosa escuro sutil por cima
        para dar um tom romântico e ajudar na leitura */
-    background-image: linear-gradient(rgba(255, 77, 109, 0.4), rgba(30, 10, 10, 0.7)), url('imagens/image_1.jpeg');
+    background-image: linear-gradient(rgba(255, 77, 109, 0.4), rgba(30, 10, 10, 0.7)), url('imagens/image_1.JPEG');
     
     /* Configurações para cobrir toda a tela sem distorcer */
     background-size: cover;
