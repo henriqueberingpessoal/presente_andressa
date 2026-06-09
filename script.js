@@ -229,18 +229,47 @@ function avancarAcao() {
     }
 }
 
-// O clique geral no modal continua funcionando (ótimo para telas touch no PC ou cliques rápidos na imagem)
+// ==========================================
+// NOVA LÓGICA DE CLIQUE/TOQUE (ESTILO INSTAGRAM NATIVO)
+// ==========================================
+
+// Função que descobre de qual lado da tela o toque aconteceu
+function toqueInteligenteMidia(e) {
+    e.stopPropagation(); // Impede que o clique vaze para o fundo preto e feche o story
+    
+    // Pega a posição X (horizontal) do clique ou toque
+    const clickX = e.clientX || (e.touches && e.touches[0].clientX);
+    const larguraTela = window.innerWidth;
+    
+    // Se clicou nos primeiros 35% da tela (Lado Esquerdo)
+    if (clickX < larguraTela * 0.35) {
+        if (currentStoryKey !== '' && currentStoryIndex > 0) {
+            currentStoryIndex--;
+            mostrarStoryAtual();
+        }
+    } else {
+        // Se clicou no resto da tela (Meio ou Direita)
+        avancarAcao();
+    }
+}
+
+// Aplica a inteligência tanto na foto quanto no vídeo
+const galleryModalImgStory = document.getElementById('gallery-modal-img'); // pegando a imagem específica
+galleryModalImgStory.addEventListener('click', toqueInteligenteMidia);
+galleryModalVid.addEventListener('click', toqueInteligenteMidia);
+
+// Fechar ao clicar EXATAMENTE no fundo preto
 galleryModal.addEventListener('click', (e) => {
-    if (e.target === galleryModal || e.target === closeBtn) {
+    if (e.target === galleryModal) {
         currentStoryKey = '';
         galleryModalVid.pause();
-        return;
+        galleryModal.classList.remove('active');
     }
-    // Se não clicou nas setas nem no fundo, avança normalmente
-    avancarAcao();
 });
 
+// Fechar ao clicar no botão X
 closeBtn.addEventListener('click', () => {
     currentStoryKey = '';
     galleryModalVid.pause();
+    galleryModal.classList.remove('active');
 });
