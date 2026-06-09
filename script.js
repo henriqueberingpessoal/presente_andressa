@@ -86,16 +86,77 @@ if (surpriseBtn) {
     });
 }
 
-// --- Lógica dos Stories (Reaproveitando o Modal da Galeria) ---
-function abrirStory(imagemSrc, legenda) {
-    const galleryModal = document.getElementById('gallery-modal');
-    const galleryModalImg = document.getElementById('gallery-modal-img');
-    const galleryModalCaption = document.getElementById('gallery-modal-caption');
+// ==========================================
+// LÓGICA DOS STORIES (MÚLTIPLAS FOTOS)
+// ==========================================
 
-    // Troca a imagem e o texto
-    galleryModalImg.src = imagemSrc;
-    galleryModalCaption.textContent = legenda;
-    
-    // Mostra na tela
-    galleryModal.classList.add('active');
+// 1. O nosso "Banco de Dados" dos Stories
+// Você pode adicionar quantas fotos quiser dentro de cada colchete [ ]
+const storiesData = {
+    viagens: [
+        { src: 'imagens/viagem1.JPEG', legenda: 'Nossa melhor viagem ✈️' },
+        { src: 'imagens/viagem2.JPEG', legenda: 'Aproveitando muito na praia 🏖️' },
+        { src: 'imagens/viagem3.JPEG', legenda: 'Olha que vista linda 😍' }
+    ],
+    lanches: [
+        { src: 'imagens/fofinha.JPEG', legenda: 'Sempre comendo kkkk 🍔' },
+        { src: 'imagens/doce.JPEG', legenda: 'Aquele docinho de lei 🍫' }
+    ],
+    roles: [
+        { src: 'imagens/bailechave.JPEG', legenda: 'A gente é muito chique 🥂' },
+        { src: 'imagens/festa.JPEG', legenda: 'Dançamos a noite toda 💃🕺' }
+    ]
+};
+
+// Variáveis de controle para saber onde estamos
+let currentStoryKey = '';
+let currentStoryIndex = 0;
+
+const storyItems = document.querySelectorAll('.story-item');
+
+// 2. Quando ela clica na bolinha do destaque
+storyItems.forEach(item => {
+    item.addEventListener('click', () => {
+        currentStoryKey = item.getAttribute('data-story');
+        currentStoryIndex = 0; // Sempre começa da primeira foto
+        
+        mostrarStoryAtual();
+        galleryModal.classList.add('active');
+    });
+});
+
+// Função que joga a foto e a legenda na tela
+function mostrarStoryAtual() {
+    const listaFotos = storiesData[currentStoryKey];
+    galleryModalImg.src = listaFotos[currentStoryIndex].src;
+    galleryModalCaption.textContent = listaFotos[currentStoryIndex].legenda;
 }
+
+// 3. O efeito Instagram: Tocar na foto para avançar
+galleryModalImg.addEventListener('click', () => {
+    // Só funciona se estivermos dentro do modo "Story"
+    if (currentStoryKey !== '') {
+        const listaFotos = storiesData[currentStoryKey];
+        
+        // Se ainda tem fotos na lista, vai para a próxima
+        if (currentStoryIndex < listaFotos.length - 1) {
+            currentStoryIndex++;
+            mostrarStoryAtual();
+        } else {
+            // Se as fotos acabaram, fecha o modal automaticamente
+            galleryModal.classList.remove('active');
+            currentStoryKey = ''; // Reseta para o padrão
+        }
+    }
+});
+
+// 4. Limpar a memória caso ela feche no "X" ou clique no fundo preto
+closeBtn.addEventListener('click', () => {
+    currentStoryKey = ''; 
+});
+
+galleryModal.addEventListener('click', (e) => {
+    if (e.target === galleryModal) {
+        currentStoryKey = ''; 
+    }
+});
