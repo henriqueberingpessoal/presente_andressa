@@ -85,3 +85,17 @@ if (surpriseBtn) {
         }, 500); // Espera meio segundo (tempo do botão sumir)
     });
 }
+
+// --- Lógica dos Stories (Reaproveitando o Modal da Galeria) ---
+function abrirStory(imagemSrc, legenda) {
+    const galleryModal = document.getElementById('gallery-modal');
+    const galleryModalImg = document.getElementById('gallery-modal-img');
+    const galleryModalCaption = document.getElementById('gallery-modal-caption');
+
+    // Troca a imagem e o texto
+    galleryModalImg.src = imagemSrc;
+    galleryModalCaption.textContent = legenda;
+    
+    // Mostra na tela
+    galleryModal.classList.add('active');
+}
