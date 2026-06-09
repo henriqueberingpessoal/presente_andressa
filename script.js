@@ -85,9 +85,19 @@ if (surpriseBtn) {
 // O Banco de Dados dos seus Stories - Configure os caminhos reais aqui!
 const storiesData = {
     viagens: [
-        { type: 'image', src: 'imagens/viagem1.JPEG', legenda: 'Nossa melhor viagem ✈️' },
-        { type: 'video', src: 'imagens/videozinho.mp4', legenda: 'Aquele dia especial 🎥' }, // Exemplo de vídeo
-        { type: 'image', src: 'imagens/viagem3.JPEG', legenda: 'Olha que vista linda 😍' }
+        { type: 'video', src: 'destaques/2024/1.MP4', legenda: 'minha carinha de quem tava doido por um beijo' },
+        { type: 'image', src: 'destaques/2024/2.JPEG', legenda: ''},
+        { type: 'image', src: 'destaques/2024/3.JPEG', legenda: ''},
+        { type: 'image', src: 'destaques/2024/4.JPEG', legenda: ''},
+        { type: 'image', src: 'destaques/2024/5.JPEG', legenda: ''},
+        { type: 'image', src: 'destaques/2024/6.JPEG', legenda: ''},
+        { type: 'image', src: 'destaques/2024/7.JPEG', legenda: ''},
+        { type: 'image', src: 'destaques/2024/8.JPEG', legenda: ''},
+        { type: 'image', src: 'destaques/2024/9.JPEG', legenda: ''},
+        { type: 'image', src: 'destaques/2024/10.JPEG', legenda: ''},
+        { type: 'image', src: 'destaques/2024/11.JPEG', legenda: ''},
+        { type: 'image', src: 'destaques/2024/12.JPEG', legenda: ''},
+        { type: 'image', src: 'destaques/2024/13.JPEG', legenda: ''},
     ],
     lanches: [
         { type: 'image', src: 'imagens/fofinha.JPEG', legenda: 'Sempre comendo kkkk 🍔' },
@@ -103,35 +113,46 @@ const storiesData = {
 let currentStoryKey = '';
 let currentStoryIndex = 0;
 
+// ... (Mantenha o seu banco de dados 'storiesData' e as variáveis 'currentStoryKey' e 'currentStoryIndex' como estão) ...
+
 const storyItems = document.querySelectorAll('.story-item');
-const galleryModalVid = document.getElementById('gallery-modal-vid'); // Seleciona a tag de vídeo do HTML
+const galleryModalVid = document.getElementById('gallery-modal-vid');
+
+// SELECIONA AS NOVAS SETAS AQUI:
+const prevBtn = document.getElementById('story-prev-btn');
+const nextBtn = document.getElementById('story-next-btn');
 
 // Quando ela clica na bolinha do destaque
 storyItems.forEach(item => {
     item.addEventListener('click', () => {
         currentStoryKey = item.getAttribute('data-story');
-        currentStoryIndex = 0; // Sempre começa do primeiro item da lista
+        currentStoryIndex = 0; 
         
         mostrarStoryAtual();
         galleryModal.classList.add('active');
     });
 });
 
-// Função central que decide se exibe foto ou vídeo na tela
+// Função centralizada atualizada para gerenciar a visibilidade da seta "Voltar"
 function mostrarStoryAtual() {
     const listaMidias = storiesData[currentStoryKey];
     const itemAtual = listaMidias[currentStoryIndex];
     
     galleryModalCaption.textContent = itemAtual.legenda;
 
+    // Se for o primeiro story, esconde a seta de voltar. Se não for, mostra!
+    if (currentStoryIndex === 0) {
+        prevBtn.classList.add('escondido');
+    } else {
+        prevBtn.classList.remove('escondido');
+    }
+
     if (itemAtual.type === 'video') {
-        // Se for vídeo: esconde a imagem, exibe o vídeo e dá play
         galleryModalImg.style.display = 'none';
         galleryModalVid.style.display = 'block';
         galleryModalVid.src = itemAtual.src;
         galleryModalVid.play();
     } else {
-        // Se for foto: esconde o vídeo, pausa ele por segurança e exibe a imagem
         galleryModalVid.style.display = 'none';
         galleryModalVid.pause();
         galleryModalImg.style.display = 'block';
@@ -139,33 +160,48 @@ function mostrarStoryAtual() {
     }
 }
 
-// O Efeito Instagram Avançado: Controla os cliques dentro do modal
-galleryModal.addEventListener('click', (e) => {
-    // Se ela clicar nas bordas pretas (fundo) ou no botão X, fecha e pausa a mídia
-    if (e.target === galleryModal || e.target === closeBtn) {
-        currentStoryKey = '';
-        galleryModalVid.pause();
-        return;
+// LÓGICA DA SETA ESQUERDA (VOLTAR)
+prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Impede o clique de se propagar para o modal e avançar a foto por acidente
+    if (currentStoryKey !== '' && currentStoryIndex > 0) {
+        currentStoryIndex--;
+        mostrarStoryAtual();
     }
+});
 
-    // Se estivermos visualizando um story e ela tocar na tela (na foto ou no vídeo)
+// LÓGICA DA SETA DIREITA (AVANÇAR)
+nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Impede cliques duplicados
+    avancarAcao();
+});
+
+// Função auxiliar que faz o story ir para frente
+function avancarAcao() {
     if (currentStoryKey !== '') {
         const listaMidias = storiesData[currentStoryKey];
         
-        // Se ainda tem próximos itens na lista, avança
         if (currentStoryIndex < listaMidias.length - 1) {
             currentStoryIndex++;
             mostrarStoryAtual();
         } else {
-            // Se os stories acabaram, fecha o modal e reseta
             galleryModal.classList.remove('active');
             galleryModalVid.pause();
             currentStoryKey = ''; 
         }
     }
+}
+
+// O clique geral no modal continua funcionando (ótimo para telas touch no PC ou cliques rápidos na imagem)
+galleryModal.addEventListener('click', (e) => {
+    if (e.target === galleryModal || e.target === closeBtn) {
+        currentStoryKey = '';
+        galleryModalVid.pause();
+        return;
+    }
+    // Se não clicou nas setas nem no fundo, avança normalmente
+    avancarAcao();
 });
 
-// Força o vídeo a pausar se ela clicar especificamente em cima do X
 closeBtn.addEventListener('click', () => {
     currentStoryKey = '';
     galleryModalVid.pause();

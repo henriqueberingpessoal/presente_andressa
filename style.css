@@ -495,3 +495,65 @@ section {
     color: #4a4a4a;
     font-weight: 500;
 }
+
+#gallery-modal-vid {
+    max-width: 95%;
+    max-height: 85%;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    border: 3px solid white; /* Borda estilo polaroid/story */
+    pointer-events: none; /* Deixa o toque passar direto para avançar o story */
+}
+
+/* ==========================================
+   SETAS DE NAVEGAÇÃO DOS STORIES (DESKTOP)
+   ========================================== */
+.story-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.85);
+    color: #1a1a1a;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1010; /* Garante que fica por cima da imagem */
+    transition: background 0.2s, transform 0.2s, opacity 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.story-nav-btn:hover {
+    background: #ffffff;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.story-nav-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+#story-prev-btn {
+    left: 25px;
+}
+
+#story-next-btn {
+    right: 25px;
+}
+
+/* Classe inteligente para esconder a seta da esquerda quando estiver no primeiro story */
+.story-nav-btn.escondido {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* REVISÃO RESPONSIVA: No celular, esconde as setas para usar o toque nativo do Insta */
+@media (max-width: 768px) {
+    .story-nav-btn {
+        display: none;
+    }
+}
