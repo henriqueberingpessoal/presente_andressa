@@ -1,162 +1,172 @@
-// Seleciona todas as imagens que estão dentro dos cards
+// ==========================================
+// 1. LÓGICA DOS CARDS (TOQUE E SEGURE)
+// ==========================================
 const imagensCards = document.querySelectorAll('.card img');
 const modal = document.getElementById('image-modal');
 const modalImg = document.getElementById('modal-img');
 
-// Função para abrir a foto em tela cheia
 function abrirModal(e) {
-    e.preventDefault(); // Evita que o celular tente abrir o menu padrão
-    modalImg.src = e.target.src; // Copia a foto que foi tocada para o telão
-    modal.classList.add('active'); // Mostra a tela escura
+    e.preventDefault(); 
+    modalImg.src = e.target.src; 
+    modal.classList.add('active'); 
 }
 
-// Função para fechar a foto
 function fecharModal(e) {
     e.preventDefault();
-    modal.classList.remove('active'); // Esconde a tela escura
+    modal.classList.remove('active'); 
 }
 
-// Adiciona o "ouvido" em cada imagem para saber quando ela toca e solta
 imagensCards.forEach(img => {
-    // Eventos para Celular (Toque do dedo)
-    img.addEventListener('touchstart', abrirModal); // Tocou a tela
-    img.addEventListener('touchend', fecharModal);  // Tirou o dedo da tela
-    img.addEventListener('touchcancel', fecharModal); // Se o dedo deslizar para fora
+    img.addEventListener('touchstart', abrirModal); 
+    img.addEventListener('touchend', fecharModal);  
+    img.addEventListener('touchcancel', fecharModal); 
 
-    // Eventos para Computador (Mouse) - caso você teste no PC
     img.addEventListener('mousedown', abrirModal);
     img.addEventListener('mouseup', fecharModal);
     img.addEventListener('mouseleave', fecharModal);
 
-    // Bloqueia o menu de contexto do celular/PC
     img.addEventListener('contextmenu', (e) => e.preventDefault());
 });
 
-// --- Lógica da Galeria de Favoritos (Clique para abrir, X para fechar e Mostrar Legenda) ---
+// ==========================================
+// 2. LÓGICA DA GALERIA DE FAVORITOS
+// ==========================================
 const imagensGaleria = document.querySelectorAll('.gallery-grid img');
 const galleryModal = document.getElementById('gallery-modal');
 const galleryModalImg = document.getElementById('gallery-modal-img');
 const closeBtn = document.getElementById('close-btn');
-const galleryModalCaption = document.getElementById('gallery-modal-caption'); // Nova seleção
+const galleryModalCaption = document.getElementById('gallery-modal-caption'); 
 
-// 1. Abre a foto ao clicar e injeta o texto correspondente
 imagensGaleria.forEach(img => {
     img.addEventListener('click', (e) => {
-        galleryModalImg.src = e.target.src; // Pega a foto exata que foi clicada
-        
-        // Puxa o texto que está escondido no HTML 'data-legenda'
+        galleryModalImg.src = e.target.src; 
         const legenda = e.target.getAttribute('data-legenda');
-        galleryModalCaption.textContent = legenda; // Joga o texto na tela
-        
-        galleryModal.classList.add('active'); // Mostra a tela escura
+        galleryModalCaption.textContent = legenda; 
+        galleryModal.classList.add('active'); 
     });
 });
 
-// 2. Fecha ao clicar no botão X
 closeBtn.addEventListener('click', () => {
     galleryModal.classList.remove('active');
 });
 
-// 3. Fecha ao clicar em qualquer lugar da tela escura (fora da foto)
 galleryModal.addEventListener('click', (e) => {
     if (e.target === galleryModal) {
         galleryModal.classList.remove('active');
     }
 });
 
-// --- Lógica da Surpresa Final ---
+// ==========================================
+// 3. LÓGICA DA SURPRESA FINAL (CARTINHA)
+// ==========================================
 const surpriseBtn = document.getElementById('surprise-btn');
 const surpriseContent = document.getElementById('surprise-content');
 
 if (surpriseBtn) {
     surpriseBtn.addEventListener('click', () => {
-        // Esconde o botão sumindo com ele aos poucos
         surpriseBtn.style.opacity = '0';
         
         setTimeout(() => {
-            surpriseBtn.style.display = 'none'; // Tira o botão do espaço
-            surpriseContent.classList.add('show'); // Mostra a cartinha
+            surpriseBtn.style.display = 'none'; 
+            surpriseContent.classList.add('show'); 
             
-            // Dá um tempinho extra e desce a tela automaticamente para ela ler a carta
             setTimeout(() => {
                 surpriseContent.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 100);
             
-        }, 500); // Espera meio segundo (tempo do botão sumir)
+        }, 500); 
     });
 }
 
 // ==========================================
-// LÓGICA DOS STORIES (MÚLTIPLAS FOTOS)
+// 4. NOVA LÓGICA DOS STORIES (FOTOS E VÍDEOS)
 // ==========================================
 
-// 1. O nosso "Banco de Dados" dos Stories
-// Você pode adicionar quantas fotos quiser dentro de cada colchete [ ]
+// O Banco de Dados dos seus Stories - Configure os caminhos reais aqui!
 const storiesData = {
     viagens: [
-        { src: 'imagens/viagem1.JPEG', legenda: 'Nossa melhor viagem ✈️' },
-        { src: 'imagens/viagem2.JPEG', legenda: 'Aproveitando muito na praia 🏖️' },
-        { src: 'imagens/viagem3.JPEG', legenda: 'Olha que vista linda 😍' }
+        { type: 'image', src: 'imagens/viagem1.JPEG', legenda: 'Nossa melhor viagem ✈️' },
+        { type: 'video', src: 'imagens/videozinho.mp4', legenda: 'Aquele dia especial 🎥' }, // Exemplo de vídeo
+        { type: 'image', src: 'imagens/viagem3.JPEG', legenda: 'Olha que vista linda 😍' }
     ],
     lanches: [
-        { src: 'imagens/fofinha.JPEG', legenda: 'Sempre comendo kkkk 🍔' },
-        { src: 'imagens/doce.JPEG', legenda: 'Aquele docinho de lei 🍫' }
+        { type: 'image', src: 'imagens/fofinha.JPEG', legenda: 'Sempre comendo kkkk 🍔' },
+        { type: 'image', src: 'imagens/doce.JPEG', legenda: 'Aquele docinho de lei 🍫' }
     ],
     roles: [
-        { src: 'imagens/bailechave.JPEG', legenda: 'A gente é muito chique 🥂' },
-        { src: 'imagens/festa.JPEG', legenda: 'Dançamos a noite toda 💃🕺' }
+        { type: 'image', src: 'destaques/bailechave.JPEG', legenda: 'A gente é muito chique 🥂' },
+        { type: 'image', src: 'destaques/festa.JPEG', legenda: 'Dançamos a noite toda 💃🕺' }
     ]
 };
 
-// Variáveis de controle para saber onde estamos
+// Variáveis de controle do sistema de Stories
 let currentStoryKey = '';
 let currentStoryIndex = 0;
 
 const storyItems = document.querySelectorAll('.story-item');
+const galleryModalVid = document.getElementById('gallery-modal-vid'); // Seleciona a tag de vídeo do HTML
 
-// 2. Quando ela clica na bolinha do destaque
+// Quando ela clica na bolinha do destaque
 storyItems.forEach(item => {
     item.addEventListener('click', () => {
         currentStoryKey = item.getAttribute('data-story');
-        currentStoryIndex = 0; // Sempre começa da primeira foto
+        currentStoryIndex = 0; // Sempre começa do primeiro item da lista
         
         mostrarStoryAtual();
         galleryModal.classList.add('active');
     });
 });
 
-// Função que joga a foto e a legenda na tela
+// Função central que decide se exibe foto ou vídeo na tela
 function mostrarStoryAtual() {
-    const listaFotos = storiesData[currentStoryKey];
-    galleryModalImg.src = listaFotos[currentStoryIndex].src;
-    galleryModalCaption.textContent = listaFotos[currentStoryIndex].legenda;
+    const listaMidias = storiesData[currentStoryKey];
+    const itemAtual = listaMidias[currentStoryIndex];
+    
+    galleryModalCaption.textContent = itemAtual.legenda;
+
+    if (itemAtual.type === 'video') {
+        // Se for vídeo: esconde a imagem, exibe o vídeo e dá play
+        galleryModalImg.style.display = 'none';
+        galleryModalVid.style.display = 'block';
+        galleryModalVid.src = itemAtual.src;
+        galleryModalVid.play();
+    } else {
+        // Se for foto: esconde o vídeo, pausa ele por segurança e exibe a imagem
+        galleryModalVid.style.display = 'none';
+        galleryModalVid.pause();
+        galleryModalImg.style.display = 'block';
+        galleryModalImg.src = itemAtual.src;
+    }
 }
 
-// 3. O efeito Instagram: Tocar na foto para avançar
-galleryModalImg.addEventListener('click', () => {
-    // Só funciona se estivermos dentro do modo "Story"
+// O Efeito Instagram Avançado: Controla os cliques dentro do modal
+galleryModal.addEventListener('click', (e) => {
+    // Se ela clicar nas bordas pretas (fundo) ou no botão X, fecha e pausa a mídia
+    if (e.target === galleryModal || e.target === closeBtn) {
+        currentStoryKey = '';
+        galleryModalVid.pause();
+        return;
+    }
+
+    // Se estivermos visualizando um story e ela tocar na tela (na foto ou no vídeo)
     if (currentStoryKey !== '') {
-        const listaFotos = storiesData[currentStoryKey];
+        const listaMidias = storiesData[currentStoryKey];
         
-        // Se ainda tem fotos na lista, vai para a próxima
-        if (currentStoryIndex < listaFotos.length - 1) {
+        // Se ainda tem próximos itens na lista, avança
+        if (currentStoryIndex < listaMidias.length - 1) {
             currentStoryIndex++;
             mostrarStoryAtual();
         } else {
-            // Se as fotos acabaram, fecha o modal automaticamente
+            // Se os stories acabaram, fecha o modal e reseta
             galleryModal.classList.remove('active');
-            currentStoryKey = ''; // Reseta para o padrão
+            galleryModalVid.pause();
+            currentStoryKey = ''; 
         }
     }
 });
 
-// 4. Limpar a memória caso ela feche no "X" ou clique no fundo preto
+// Força o vídeo a pausar se ela clicar especificamente em cima do X
 closeBtn.addEventListener('click', () => {
-    currentStoryKey = ''; 
-});
-
-galleryModal.addEventListener('click', (e) => {
-    if (e.target === galleryModal) {
-        currentStoryKey = ''; 
-    }
+    currentStoryKey = '';
+    galleryModalVid.pause();
 });
