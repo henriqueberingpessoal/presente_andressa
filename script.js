@@ -118,6 +118,7 @@ const storiesData = {
         { type: 'image', src: 'destaques/2025/16.jpeg', legenda: 'as melhores fantasias do trote'},
         { type: 'image', src: 'destaques/2025/17.jpeg', legenda: 'os melhores dançarinos'},
         { type: 'image', src: 'destaques/2025/18.jpeg', legenda: 'fofa'},
+        { type: 'image', src: 'destaques/2025/27.jpeg', legenda: 'tão gatinha meu amor'},
         { type: 'image', src: 'destaques/2025/19.jpeg', legenda: ''},
         { type: 'image', src: 'destaques/2025/20.jpeg', legenda: 'tão bom ir dormir com meu amor, eu tava estiloso demais'},
         { type: 'image', src: 'destaques/2025/21.jpeg', legenda: 'tão linda meu amor'},
