@@ -198,7 +198,7 @@ section {
     transition: opacity 0.2s ease; /* Efeito suave ao aparecer/sumir */
     will-change: opacity; /* OTIMIZAÇÃO GPU */
 
-    /* CORREÇÃO IPHONE 13: Garante área de respiro nas mídias em cima e embaixo */
+    /* RESPIRO PARA IPHONE 13: Garante área de segurança para os botões e notch */
     padding: 75px 20px 105px 20px;
     box-sizing: border-box;
 }
@@ -212,7 +212,11 @@ section {
 /* A foto em tela cheia */
 .modal img {
     max-width: 95%;
-    max-height: 70vh; /* CORREÇÃO: Limita a altura para sobrar espaço pro X, Música e Legenda */
+    
+    /* ATUALIZAÇÃO FLEXBOX: Permite que a foto encolha se a legenda for muito grande */
+    flex: 1 1 auto;
+    min-height: 0; 
+    
     border-radius: 15px;
     object-fit: contain; /* Garante que a foto toda caiba na tela sem cortar */
     box-shadow: 0 0 25px rgba(0,0,0,0.8);
@@ -294,9 +298,8 @@ section {
     z-index: 1001;
     font-weight: 500;
     
-    /* CORREÇÃO: Evita que textos gigantes estourem a tela ou sobreponham elementos */
-    max-height: 12vh;
-    overflow-y: auto; 
+    /* ATUALIZAÇÃO RECORTE: Força a legenda a aparecer inteira, sem amassar ou cortar */
+    flex-shrink: 0;
 }
 
 /* --- Seção de Elogios (Visual Livre e Fotos Maiores) --- */
@@ -446,7 +449,7 @@ section {
 }
 
 /* ==========================================
-SEÇÃO DE STORIES / DESTAKES
+SEÇÃO DE STORIES / DESTAQUES
 ========================================== */
 .stories-section {
     background-color: #fff5f5; /* Mesma cor do fundo do site */
@@ -513,7 +516,11 @@ SEÇÃO DE STORIES / DESTAKES
 
 #gallery-modal-vid {
     max-width: 95%;
-    max-height: 70vh; /* CORREÇÃO: Reduzido de 85% para o mesmo ajuste de altura do iPhone */
+    
+    /* ATUALIZAÇÃO FLEXBOX: O vídeo também se adapta perfeitamente ao tamanho da legenda */
+    flex: 1 1 auto;
+    min-height: 0; 
+    
     border-radius: 12px;
     box-shadow: 0 0 25px rgba(0,0,0,0.8);
     border: 3px solid white; /* Borda estilo polaroid/story */
