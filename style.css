@@ -690,12 +690,27 @@
     margin-bottom: 20px;
 }
 
-/* Lista de botões das músicas */
+/* Lista de botões das músicas (Agora com rolagem interna) */
 .playlist-options {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 15px;
+    
+    /* --- AS DUAS LINHAS MÁGICAS --- */
+    max-height: 240px; /* Define uma altura máxima limite para a lista */
+    overflow-y: auto;  /* Ativa a rolagem vertical se passar da altura máxima */
+    padding-right: 4px; /* Dá um espacinho para a barra de rolagem não colar nos botões */
+}
+
+/* Opcional: Deixa a barra de rolagem do celular bem fininha e discreta */
+.playlist-options::-webkit-scrollbar {
+    width: 4px;
+}
+
+.playlist-options::-webkit-scrollbar-thumb {
+    background-color: #ffe6ea;
+    border-radius: 10px;
 }
 
 .track-btn {
