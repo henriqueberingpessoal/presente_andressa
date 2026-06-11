@@ -8,231 +8,207 @@
 </head>
 <body>
 
-    <button id="music-btn">🎵</button>
+    <button id="music-btn" aria-label="Abrir playlist">🎵</button>
 
-<div id="playlist-modal" class="music-modal-overlay">
-    <div class="music-modal-card">
-        <h3>Escolha nossa trilha sonora ❤️</h3>
-        <p>Selecione uma música para tocar de fundo:</p>
-        
-        <div class="playlist-options">
-            <button class="track-btn" data-src="musica/que sorte a nossa.mp3">
-            Que Sorte a Nossa - M&K
-            </button>
-
-            <button class="track-btn" data-src="musica/eu juro.mp3">
-            Eu Juro - Ferrugem
-            </button>
-
-            <button class="track-btn" data-src="musica/aindabem.mp3">
-                Ainda Bem / Resposta - Menos é Mais
-            </button>
-
-            <button class="track-btn" data-src="musica/ate que enfim.mp3">
-                Até Que Enfim - Ferrugem
-            </button>
+    <div id="playlist-modal" class="music-modal-overlay" aria-hidden="true">
+        <div class="music-modal-card">
+            <h3>Escolha nossa trilha sonora ❤️</h3>
+            <p>Selecione uma música para tocar de fundo:</p>
             
-            <button class="track-btn" data-src="musica/osanjoscantam.mp3">
-            Os Anjos Cantam - J&M
-            </button>
-            
-            <button class="track-btn" data-src="musica/é amor.mp3">
-            É Amor - J&M
-            </button>
+            <div class="playlist-options">
+                <button class="track-btn" data-src="musica/quesorteanossa.mp3">Que Sorte a Nossa - M&K</button>
+                <button class="track-btn" data-src="musica/eujuro.mp3">Eu Juro - Ferrugem</button>
+                <button class="track-btn" data-src="musica/aindabem.mp3">Ainda Bem / Resposta - Menos é Mais</button>
+                <button class="track-btn" data-src="musica/atequeenfim.mp3">Até Que Enfim - Ferrugem</button>
+                <button class="track-btn" data-src="musica/osanjoscantam.mp3">Os Anjos Cantam - J&M</button>
+                <button class="track-btn" data-src="musica/eamor.mp3">É Amor - J&M</button>
+                <button class="track-btn" data-src="musica/tevivo.mp3">Te Vivo - Luan Santana</button>
+                <button class="track-btn" data-src="musica/diewithasmile.mp3">Die With a Smile - Bruno Mars</button>
+            </div>
 
-            <button class="track-btn" data-src="musica/te vivo.mp3">
-            Te Vivo - Luan Santana
-            </button>
-
-            <button class="track-btn" data-src="musica/die with a smile.mp3">
-            Die With a Smile - Bruno Mars
-            </button>
-
+            <button id="pause-track-btn" class="playlist-close-btn">Pausar Música ⏸️</button>
+            <button id="close-playlist-btn" class="playlist-close-btn fechar">Fechar</button>
         </div>
-
-        <button id="pause-track-btn" class="playlist-close-btn">Pausar Música ⏸️</button>
-        <button id="close-playlist-btn" class="playlist-close-btn fechar">Fechar</button>
     </div>
-</div>
 
-<audio id="bg-music" loop></audio>
+    <audio id="bg-music" loop preload="none"></audio>
     
-    <section class="hero-section">
-        <div class="heart">❤️</div>
-        <h1>Feliz Dia dos Namorados, Minha Lindona!</h1>
-        <p>Preparei uma surpresinha para você... Arrasta para baixo! ↓</p>
-    </section>
+    <main>
+        <section class="hero-section">
+            <div class="heart">❤️</div>
+            <h1>Feliz Dia dos Namorados, Minha Lindona!</h1>
+            <p>Preparei uma surpresinha para você... Arrasta para baixo! ↓</p>
+        </section>
 
-    <div class="contador-container">
-        <h3>Estamos construindo nossa história há:</h3>
-        <div id="contador">Carregando nosso tempo...</div>
-    </div>
-
-    <section class="stories-section">
-        <h1>Retrospectivazinha</h1>
-        <div class="stories-wrapper">
-            
-            <div class="story-item" data-story="viagens">
-                <div class="story-ring">
-                    <img src="imagens/capa24.jpeg" alt="Capa">
-                </div>
-                <span>2024</span>
-                <small>nosso comecinho<br>lindo né?</small>
-            </div>
-
-            <div class="story-item" data-story="lanches">
-                <div class="story-ring">
-                    <img src="imagens/bailechave.JPEG" alt="Capa">
-                </div>
-                <span>2025</span>
-            </div>
-
-            <div class="story-item" data-story="roles">
-                <div class="story-ring">
-                    <img src="imagens/capa26.jpeg" alt="Capa">
-                </div>
-                <span>2026</span>
-            </div>
-
+        <div class="contador-container">
+            <h3>Estamos construindo nossa história há:</h3>
+            <div id="contador">Carregando nosso tempo...</div>
         </div>
-    </section>
 
-    <section class="memes-section">
-        <h2>Nossos momentos que eu amo tanto</h2>
-        <p>Todos os momentos com você são os melhores, queria poder estar ao seu lado sempre.</p>
-        
-        <div class="card-container" id="container-divertido">
+        <section class="stories-section">
+            <h1>Retrospectivazinha</h1>
+            <div class="stories-wrapper">
+                
+                <div class="story-item" data-story="viagens">
+                    <div class="story-ring">
+                        <img src="imagens/capa24.jpeg" alt="Capa 2024">
+                    </div>
+                    <span>2024</span>
+                    <small>nosso comecinho<br>lindo né?</small>
+                </div>
+
+                <div class="story-item" data-story="lanches">
+                    <div class="story-ring">
+                        <img src="imagens/bailechave.JPEG" alt="Capa 2025">
+                    </div>
+                    <span>2025</span>
+                </div>
+
+                <div class="story-item" data-story="roles">
+                    <div class="story-ring">
+                        <img src="imagens/capa26.jpeg" alt="Capa 2026">
+                    </div>
+                    <span>2026</span>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="memes-section">
+            <h2>Nossos momentos que eu amo tanto</h2>
+            <p>Todos os momentos com você são os melhores, queria poder estar ao seu lado sempre.</p>
             
-            <div class="card">
-                <img src="imagens/fofinha.JPEG" alt="Amo os lanchinhos">
-                <p>Amo os lanchinhos com você</p>
-            </div>
-
-            <div class="card">
-                <div class="card-img-group grid-2">
-                    <img src="imagens/anonovo.JPEG" alt="Vendo coisas">
-                    <img src="imagens/fofinha2.JPEG" alt="Vendo coisas">
+            <div class="card-container" id="container-divertido">
+                
+                <div class="card">
+                    <img src="imagens/fofinha.JPEG" alt="Amo os lanchinhos" loading="lazy">
+                    <p>Amo os lanchinhos com você</p>
                 </div>
-                <p>Adoro quando vemos coisa juntinhos, mesmo você sendo viciada no celular 👀</p>
-            </div>
 
-            <div class="card">
-                <div class="card-img-group grid-3">
-                    <img src="imagens/anvnicolly.JPEG" alt="Aniversário">
-                    <img src="imagens/anvmadu.JPEG" alt="Aniversário">
-                    <img src="imagens/anvlevi.JPEG" alt="Aniversário">
+                <div class="card">
+                    <div class="card-img-group grid-2">
+                        <img src="imagens/anonovo.JPEG" alt="Vendo coisas" loading="lazy">
+                        <img src="imagens/fofinha2.JPEG" alt="Vendo coisas" loading="lazy">
+                    </div>
+                    <p>Adoro quando vemos coisa juntinhos, mesmo você sendo viciada no celular 👀</p>
                 </div>
-                <p>Festas que eu nem fazia tanta questão de ir, mas sua presença as deixou mais interessantes.</p>
-            </div>
 
-            <div class="card">
-                <div class="card-img-group grid-2">
-                    <img src="imagens/engracadinho.JPEG" alt="Foto engraçadinha">
-                    <img src="imagens/anvanalu.JPEG" alt="Foto engraçadinha">
+                <div class="card">
+                    <div class="card-img-group grid-3">
+                        <img src="imagens/anvnicolly.JPEG" alt="Aniversário" loading="lazy">
+                        <img src="imagens/anvmadu.JPEG" alt="Aniversário" loading="lazy">
+                        <img src="imagens/anvlevi.JPEG" alt="Aniversário" loading="lazy">
+                    </div>
+                    <p>Festas que eu nem fazia tanta questão de ir, mas sua presença as deixou mais interessantes.</p>
                 </div>
-                <p>Fotos engraçadinhas que eu adoro tirar</p>
+
+                <div class="card">
+                    <div class="card-img-group grid-2">
+                        <img src="imagens/engracadinho.JPEG" alt="Foto engraçadinha" loading="lazy">
+                        <img src="imagens/anvanalu.JPEG" alt="Foto engraçadinha" loading="lazy">
+                    </div>
+                    <p>Fotos engraçadinhas que eu adoro tirar</p>
+                </div>
+
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <section class="gallery-section">
-        <h2>Meus momentos favoritos com você...</h2>
-        <p>Alguns dos momentos que me mostram o porquê você é a pessoa certa pra mim, e pequenas coisas que fazem eu te amar mais que tudo.</p>
-        <p>clica nas fotinhas</p>
-        
-        <div class="gallery-grid" id="galeria-fotos">
-            <img src="imagens/anonovo2.JPEG" alt="Momento inesquecível" data-legenda="Uma das melhores viradas de ano da minha vida, e você estava tão linda (como sempre)❤️">
-            <img src="imagens/bailechave.JPEG" alt="Nosso momento" data-legenda="Esse baile foi incrível e você deixou melhor ainda. Ainda bem que esse evento foi com a sua presença ao meu lado (e você tava um absurdo de tão linda)">
-            <img src="imagens/apaixonados.JPEG" alt="Amo muito" data-legenda="Me sinto tão apaixonado e tão querido vendo essa foto e seu olhar lindo">
-            <img src="imagens/apaixonados2.JPEG" alt="Pessoa certa" data-legenda="Adoro essa foto. Seu sorrisinho e seu olhar mexeram comigo kkkkk">
-            <img src="imagens/linda2.JPEG" alt="minha linda" data-legenda="Um dos nossos melhores encontros. Você sempre linda, e lembro de momentos em que você não parava de falar toda animada e com o olhar feliz, adoro quando você faz isso❤️">
-            <img src="imagens/onibus.JPEG" alt="amo muito" data-legenda="Você deixou até a ginco mais legal. Obrigado por ser tão incrível meu amor">
-        </div>
-    </section>
-
-    <section class="elogios-section">
-        <h2>Simplesmente Você</h2>
-        <p>Um espacinho dedicado apenas para enaltecer a mulher mais linda do mundo e mostrar como sou doido por você.</p>
-        
-        <div class="elogio-container">
+        <section class="gallery-section">
+            <h2>Meus momentos favoritos com você...</h2>
+            <p>Alguns dos momentos que me mostram o porquê você é a pessoa certa pra mim, e pequenas coisas que fazem eu te amar mais que tudo.</p>
+            <p>clica nas fotinhas</p>
             
-            <div class="elogio-item">
-                <img src="imagens/linda1.JPEG" alt="Seu Sorriso">
-                <div class="elogio-texto">
-                    <h3>Fotinhas que você me manda</h3>
-                    <p>Adoro quando você me manda fotos toda lindona. Seu sorrisinho de canto e seu olho lindão são maravilhosos</p>
-                </div>
+            <div class="gallery-grid" id="galeria-fotos">
+                <img src="imagens/anonovo2.JPEG" alt="Momento inesquecível" data-legenda="Uma das melhores viradas de ano da minha vida, e você estava tão linda (como sempre)❤️" loading="lazy">
+                <img src="imagens/bailechave.JPEG" alt="Nosso momento" data-legenda="Esse baile foi incrível e você deixou melhor ainda. Ainda bem que esse evento foi com a sua presença ao meu lado (e você tava um absurdo de tão linda)" loading="lazy">
+                <img src="imagens/apaixonados.JPEG" alt="Amo muito" data-legenda="Me sinto tão apaixonado e tão querido vendo essa foto e seu olhar lindo" loading="lazy">
+                <img src="imagens/apaixonados2.JPEG" alt="Pessoa certa" data-legenda="Adoro essa foto. Seu sorrisinho e seu olhar mexeram comigo kkkkk" loading="lazy">
+                <img src="imagens/linda2.JPEG" alt="minha linda" data-legenda="Um dos nossos melhores encontros. Você sempre linda, e lembro de momentos em que você não parava de falar toda animada e com o olhar feliz, adoro quando você faz isso❤️" loading="lazy">
+                <img src="imagens/onibus.JPEG" alt="amo muito" data-legenda="Você deixou até a ginco mais legal. Obrigado por ser tão incrível meu amor" loading="lazy">
             </div>
+        </section>
 
-            <div class="elogio-item inverte">
-                <img src="imagens/melhorjogadora.JPEG" alt="Seu Olhar">
-                <div class="elogio-texto">
-                    <h3>Minha jogadora</h3>
-                    <p>Adoro quando você me chama pra te ver jogar. A melhor (e minha) jogadora, você é demais.</p>
-                    <small>Não vou mentir que gosto de olhar pra um lugarzinho ai quando você ta com esses shortinhos🤭</small>
+        <section class="elogios-section">
+            <h2>Simplesmente Você</h2>
+            <p>Um espacinho dedicado apenas para enaltecer a mulher mais linda do mundo e mostrar como sou doido por você.</p>
+            
+            <div class="elogio-container">
+                
+                <div class="elogio-item">
+                    <img src="imagens/linda1.JPEG" alt="Seu Sorriso" loading="lazy">
+                    <div class="elogio-texto">
+                        <h3>Fotinhas que você me manda</h3>
+                        <p>Adoro quando você me manda fotos toda lindona. Seu sorrisinho de canto e seu olho lindão são maravilhosos</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="elogio-item">
-                <img src="imagens/linda3.JPEG" alt="Sua Essência">
-                <div class="elogio-texto">
-                    <h3>Sempre tão linda</h3>
-                    <p>Você não gosta da maioria das fotos, como essa, mas eu sempre te acho linda em todas e sempre quando tiro uma foto nova sua eu fico admirando, você é tão maravilhosa</p>
+                <div class="elogio-item inverte">
+                    <img src="imagens/melhorjogadora.JPEG" alt="Seu Olhar" loading="lazy">
+                    <div class="elogio-texto">
+                        <h3>Minha jogadora</h3>
+                        <p>Adoro quando você me chama pra te ver jogar. A melhor (e minha) jogadora, você é demais.</p>
+                        <small>Não vou mentir que gosto de olhar pra um lugarzinho ai quando você ta com esses shortinhos🤭</small>
+                    </div>
                 </div>
-            </div>
+
+                <div class="elogio-item">
+                    <img src="imagens/linda3.JPEG" alt="Sua Essência" loading="lazy">
+                    <div class="elogio-texto">
+                        <h3>Sempre tão linda</h3>
+                        <p>Você não gosta da maioria das fotos, como essa, mas eu sempre te acho linda em todas e sempre quando tiro uma foto nova sua eu fico admirando, você é tão maravilhosa</p>
+                    </div>
+                </div>
  
-            <div class="elogio-item inverte">
-                <img src="imagens/linda4.JPEG" alt="Sua Companhia">
-                <div class="elogio-texto">
-                    <h3>Amo sua companhia</h3>
-                    <p>Qualquer lugar se torna o melhor do mundo quando você está lá comigo. E como sempre vou exaltar o quão linda você é, assim como nessa foto e em todas as outras.</p>
+                <div class="elogio-item inverte">
+                    <img src="imagens/linda4.JPEG" alt="Sua Companhia" loading="lazy">
+                    <div class="elogio-texto">
+                        <h3>Amo sua companhia</h3>
+                        <p>Qualquer lugar se torna o melhor do mundo quando você está lá comigo. E como sempre vou exaltar o quão linda você é, assim como nessa foto e em todas as outras.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="elogio-item">
-                <img src="imagens/linda5.JPEG" alt="Seu Jeitinho">
-                <div class="elogio-texto">
-                    <h3>Parece até modelo</h3>
-                    <p>Uma das minhas fotos favoritas, tão linda e atraente. Você não sabe o quanto eu me sinto atraido por você, não só pela sua beleza mas estamos aqui pra exaltar isso. Lindona da minha vida</p>
+                <div class="elogio-item">
+                    <img src="imagens/linda5.JPEG" alt="Seu Jeitinho" loading="lazy">
+                    <div class="elogio-texto">
+                        <h3>Parece até modelo</h3>
+                        <p>Uma das minhas fotos favoritas, tão linda e atraente. Você não sabe o quanto eu me sinto atraido por você, não só pela sua beleza mas estamos aqui pra exaltar isso. Lindona da minha vida</p>
+                    </div>
                 </div>
+
             </div>
+        </section>
 
-        </div>
-    </section>
+        <section class="surprise-section">
+            <button id="surprise-btn">Tenho uma última coisinha pra você... ❤️</button>
+            
+            <div id="surprise-content" class="hidden-letter">
+                <h3>Para a mulher da minha vida,</h3>
+                <p>Fazer essa página foi só um jeito de tentar colocar em palavras o quanto você é especial pra mim. Obrigado por cada sorriso, cada lanchinho, cada momento e por ser exatamente quem você é.</p>
+                <p>Fiz esse sitezinho pra te mostrar o quanto eu te amo, mesmo que seja algo básico, foi feito com muito amor para a pessoa que eu amo mais que tudo. Reuni alguns dos nossos momentos. Mesmo não sendo todos que estão aqui, estes são alguns dos que me fizeram a pessoa mais feliz desse mundo, e por estar ao seu lado eu sempre serei feliz.</p>
+                <p>São aqueles momentos que a gente se divertiu muito e outros que só a sua presença já os deixou bem melhores (todos são assim, na verdade) do que poderiam ser. Muitas vezes que você fez coisas que me deixavam cada vez mais apaixonado e que mostravam o porquê você é uma pessoa tão incrível. Às vezes parece que eu nem te mereço por você ser tão maravilhosa, mas eu sou muito feliz e grato por você me escolher todos os dias (pelo menos é o que eu espero, viu, dona Andressa).</p>
+                <p>Você é a melhor namorada de todas, a mais linda, mais gostosa, mais gentil, mais doce, mais tudo que há de bom. Eu te amo mais que tudo, meu amor, obrigado por ser a minha namorada. Espero que você goste do meu sitezinho mesmo que ele seja simples, e vou guardar palavras pra cartinha que vou te fazer. Eu te amo, meu amor da minha vida todinha, sem dúvidas você é a melhor namorada de todas.</p>
+                <p><strong>Eu te amo mais que tudo minha momolada! Feliz Dia dos Namorados! 🥰</strong></p>
+            </div>
+        </section>
+    </main>
 
-    <section class="surprise-section">
-        <button id="surprise-btn">Tenho uma última coisinha pra você... ❤️</button>
-        
-        <div id="surprise-content" class="hidden-letter">
-            <h3>Para a mulher da minha vida,</h3>
-            <p>Fazer essa página foi só um jeito de tentar colocar em palavras o quanto você é especial pra mim. Obrigado por cada sorriso, cada lanchinho, cada momento e por ser exatamente quem você é.</p>
-            <p>Fiz esse sitezinho pra te mostrar o quanto eu te amo, mesmo que seja algo básico, foi feito com muito amor para a pessoa que eu amo mais que tudo. Reuni alguns dos nossos momentos. Mesmo não sendo todos que estão aqui, estes são alguns dos que me fizeram a pessoa mais feliz desse mundo, e por estar ao seu lado eu sempre serei feliz.
-
-São aqueles momentos que a gente se divertiu muito e outros que só a sua presença já os deixou bem melhores (todos são assim, na verdade) do que poderiam ser. Muitas vezes que você fez coisas que me deixavam cada vez mais apaixonado e que mostravam o porquê você é uma pessoa tão incrível. Às vezes parece que eu nem te mereço por você ser tão maravilhosa, mas eu sou muito feliz e grato por você me escolher todos os dias (pelo menos é o que eu espero, viu, dona Andressa).
-
-Você é a melhor namorada de todas, a mais linda, mais gostosa, mais gentil, mais doce, mais tudo que há de bom. Eu te amo mais que tudo, meu amor, obrigado por ser a minha namorada. Espero que você goste do meu sitezinho mesmo que ele seja simples, e vou guardar palavras pra cartinha que vou te fazer. Eu te amo, meu amor da minha vida todinha, sem dúvidas você é a melhor namorada de todas.</p>
-            <p><strong>Eu te amo mais que tudo minha momolada! Feliz Dia dos Namorados! 🥰</strong></p>
-        </div>
-    </section>
-
-    <div id="image-modal" class="modal">
+    <div id="image-modal" class="modal" aria-hidden="true">
         <img id="modal-img" src="" alt="Preview em tela cheia">
     </div>
 
-    <div id="gallery-modal" class="modal">
-        <span id="close-btn">&times;</span>
+    <div id="gallery-modal" class="modal" aria-hidden="true">
+        <span id="close-btn" aria-label="Fechar">&times;</span>
 
-        <button id="story-prev-btn" class="story-nav-btn">&#10094;</button>
+        <button id="story-prev-btn" class="story-nav-btn" aria-label="Anterior">&#10094;</button>
 
         <img id="gallery-modal-img" src="" alt="Ta faltando foto">
         <video id="gallery-modal-vid" src="" autoplay loop playsinline style="display: none;"></video>
 
-        <button id="story-next-btn" class="story-nav-btn">&#10095;</button>
+        <button id="story-next-btn" class="story-nav-btn" aria-label="Próximo">&#10095;</button>
 
         <p id="gallery-modal-caption"></p>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
