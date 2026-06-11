@@ -1,776 +1,786 @@
 /* Reset básico e fontes */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-    body {
-        background-color: #fff5f5; /* Um rosa bem clarinho, elegante */
-        color: #4a4a4a;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased; /* Deixa as fontes mais suaves no celular */
-        -moz-osx-font-smoothing: grayscale;
-    }
+body {
+    background-color: #fff5f5; /* Um rosa bem clarinho, elegante */
+    color: #4a4a4a;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; /* Deixa as fontes mais suaves no celular */
+    -moz-osx-font-smoothing: grayscale;
+}
 
-    section {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 20px;
-    }
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
 
-    /* OTIMIZAÇÃO: Não renderiza as seções de baixo até a pessoa rolar a tela */
-    .memes-section, .gallery-section, .elogios-section, .surprise-section {
-        content-visibility: auto;
-        contain-intrinsic-size: auto 1000px; 
-    }
+/* OTIMIZAÇÃO: Não renderiza as seções de baixo até a pessoa rolar a tela */
+.memes-section, .gallery-section, .elogios-section, .surprise-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1000px; 
+}
 
-    /* Seção Inicial (Hero) com Imagem de Fundo */
-    .hero-section {
-        /* Substituímos o degradê pela imagem, mas mantemos um degradê rosa escuro sutil por cima
-        para dar um tom romântico e ajudar na leitura */
-        background-image: linear-gradient(rgba(255, 77, 109, 0.4), rgba(30, 10, 10, 0.7)), url('imagens/image_1.JPEG');
-        
-        /* Configurações para cobrir toda a tela sem distorcer */
-        background-size: cover;
-        background-position: center top; /* Centraliza a foto horizontalmente e alinha ao topo */
-        background-repeat: no-repeat;
-        
-        color: white; /* Garante que o texto seja branco e claro */
-    }
+/* Seção Inicial (Hero) com Imagem de Fundo */
+.hero-section {
+    /* Substituímos o degradê pela imagem, mas mantemos um degradê rosa escuro sutil por cima
+    para dar um tom romântico e ajudar na leitura */
+    background-image: linear-gradient(rgba(255, 77, 109, 0.4), rgba(30, 10, 10, 0.7)), url('imagens/image_1.JPEG');
+    
+    /* Configurações para cobrir toda a tela sem distorcer */
+    background-size: cover;
+    background-position: center top; /* Centraliza a foto horizontalmente e alinha ao topo */
+    background-repeat: no-repeat;
+    
+    color: white; /* Garante que o texto seja branco e claro */
+}
 
-    .hero-section h1 {
-        font-size: 2.2rem;
-        margin-bottom: 15px;
-        
-        /* Aumentamos um pouco a sombra do texto para máxima legibilidade */
-        text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
-    }
+.hero-section h1 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    
+    /* Aumentamos um pouco a sombra do texto para máxima legibilidade */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+}
 
-    .hero-section p {
-        font-size: 1.1rem;
-        max-width: 90%;
-        /* Adicionamos uma sombra leve também no parágrafo */
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    }
+.hero-section p {
+    font-size: 1.1rem;
+    max-width: 90%;
+    /* Adicionamos uma sombra leve também no parágrafo */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
 
-    /* Mantemos a animação do coração igual */
-    .heart {
-        font-size: 5rem;
-        animation: pulsar 1.2s infinite;
-        margin-bottom: 20px;
-        will-change: transform; /* OTIMIZAÇÃO: Passa a animação pra GPU */
-    }
+/* Mantemos a animação do coração igual */
+.heart {
+    font-size: 5rem;
+    animation: pulsar 1.2s infinite;
+    margin-bottom: 20px;
+    will-change: transform; /* OTIMIZAÇÃO: Passa a animação pra GPU */
+}
 
-    /* Animação do Coração Pulsando */
-    @keyframes pulsar {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.15); }
-        100% { transform: scale(1); }
-    }
+/* Animação do Coração Pulsando */
+@keyframes pulsar {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
 
-    /* Estilos básicos para as outras seções */
-    .memes-section h2, .gallery-section h2 {
-        color: #ff4d6d;
-        margin-bottom: 20px;
-    }
+/* Estilos básicos para as outras seções */
+.memes-section h2, .gallery-section h2 {
+    color: #ff4d6d;
+    margin-bottom: 20px;
+}
 
-    /* Estilo base dos Cards (Fundo branco e sombra) */
-    .card-container {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        max-width: 350px;
-        margin: 0 auto; /* Centraliza os cards */
-    }
+/* Estilo base dos Cards (Fundo branco e sombra) */
+.card-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 350px;
+    margin: 0 auto; /* Centraliza os cards */
+}
 
-    .card {
-        background: white;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e0e0e0;
-        /* OTIMIZAÇÃO: Prepara a GPU para os cliques longos */
-        will-change: opacity, transform; 
-    }
+.card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    /* OTIMIZAÇÃO: Prepara a GPU para os cliques longos */
+    will-change: opacity, transform; 
+}
 
-    .card img {
-        width: 100%;
-        height: auto;
-        display: block;
-        /* IMPORTANTÍSSIMO PARA IPHONE: Bloqueia o menu de "Salvar Imagem" ao segurar */
-        -webkit-touch-callout: none;
-        user-select: none;
-    }
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* IMPORTANTÍSSIMO PARA IPHONE: Bloqueia o menu de "Salvar Imagem" ao segurar */
+    -webkit-touch-callout: none;
+    user-select: none;
+}
 
-    .card p {
-        padding: 15px;
-        font-size: 0.95rem;
-        color: #555;
-        margin-bottom: 0;
-        line-height: 1.4;
-        text-align: center;
-    }
+.card p {
+    padding: 15px;
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0;
+    line-height: 1.4;
+    text-align: center;
+}
 
-    /* --- Ajustes para Cards com Múltiplas Imagens --- */
+/* --- Ajustes para Cards com Múltiplas Imagens --- */
 
-    /* Quando o card tem só 1 foto normal */
-    .card > img {
-        max-height: 350px;
-        object-fit: cover;
-    }
+/* Quando o card tem só 1 foto normal */
+.card > img {
+    max-height: 350px;
+    object-fit: cover;
+}
 
-    /* Agrupamento de fotos */
-    .card-img-group {
-        display: grid;
-        gap: 2px; /* Espaço bem fininho entre as fotos no mesmo card */
-    }
+/* Agrupamento de fotos */
+.card-img-group {
+    display: grid;
+    gap: 2px; /* Espaço bem fininho entre as fotos no mesmo card */
+}
 
-    /* Duas fotos: uma do lado da outra */
-    .grid-2 {
-        grid-template-columns: 1fr 1fr;
-    }
+/* Duas fotos: uma do lado da outra */
+.grid-2 {
+    grid-template-columns: 1fr 1fr;
+}
 
-    /* Três fotos: a primeira grandona em cima, e duas menores embaixo */
-    .grid-3 {
-        grid-template-columns: 1fr 1fr;
-    }
-    .grid-3 img:first-child {
-        grid-column: span 2; 
-    }
+/* Três fotos: a primeira grandona em cima, e duas menores embaixo */
+.grid-3 {
+    grid-template-columns: 1fr 1fr;
+}
+.grid-3 img:first-child {
+    grid-column: span 2; 
+}
 
-    /* Garante que todas as fotos agrupadas fiquem do mesmo tamanho sem distorcer */
-    .card-img-group img {
-        width: 100%;
-        height: 180px; 
-        object-fit: cover;
-        display: block;
-    }
+/* Garante que todas as fotos agrupadas fiquem do mesmo tamanho sem distorcer */
+.card-img-group img {
+    width: 100%;
+    height: 180px; 
+    object-fit: cover;
+    display: block;
+}
 
-    /* --- Atualização: Seção de Momentos em Azul --- */
-    .memes-section {
-        /* Escolhi um azul pastel suave e romântico, a cor favorita dela! */
-        background-color: #bbdefb; 
-        
-        /* Adicionando alguns toques especiais: */
-        padding: 60px 20px; /* Aumentei o espaçamento para a seção respirar */
-        border-radius: 20px; /* Adicionei cantos arredondados */
-        margin: 20px; /* Adicionei uma margem para que a seção "flutue" na tela */
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Uma sombra leve para profundidade */
-    }
+/* --- Atualização: Seção de Momentos em Azul --- */
+.memes-section {
+    /* Escolhi um azul pastel suave e romântico, a cor favorita dela! */
+    background-color: #bbdefb; 
+    
+    /* Adicionando alguns toques especiais: */
+    padding: 60px 20px; /* Aumentei o espaçamento para a seção respirar */
+    border-radius: 20px; /* Adicionei cantos arredondados */
+    margin: 20px; /* Adicionei uma margem para que a seção "flutue" na tela */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Uma sombra leve para profundidade */
+}
 
-    /* Ajustando as cores do texto para ficarem perfeitas no novo fundo azul */
-    .memes-section h2 {
-        color: #0d47a1; /* Um azul mais escuro e profundo para o título */
-        font-size: 1.8rem;
-        margin-bottom: 10px;
-    }
+/* Ajustando as cores do texto para ficarem perfeitas no novo fundo azul */
+.memes-section h2 {
+    color: #0d47a1; /* Um azul mais escuro e profundo para o título */
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
 
-    .memes-section p {
-        font-size: 1rem;
-        margin-bottom: 30px;
-        color: #333; /* Escureci o texto para máxima legibilidade */
-        max-width: 90%;
-    }
+.memes-section p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: #333; /* Escureci o texto para máxima legibilidade */
+    max-width: 90%;
+}
 
-    /* --- Modal de Preview de Foto (Segurar para ver) --- */
-    .modal {
-        position: fixed; /* Fica fixo na tela, por cima de tudo */
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.85); /* Fundo preto quase totalmente escuro */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000; /* Garante que fique na frente de tudo no site */
-        
-        /* Começa invisível e não interfere nos cliques */
-        opacity: 0; 
-        pointer-events: none; 
-        transition: opacity 0.2s ease; /* Efeito suave ao aparecer/sumir */
-        will-change: opacity; /* OTIMIZAÇÃO GPU */
-    }
+/* --- Modal de Preview de Foto (Segurar para ver) --- */
+.modal {
+    position: fixed; /* Fica fixo na tela, por cima de tudo */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo preto ligeiramente mais escuro para focar na foto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que fique na frente de tudo no site */
+    
+    /* Começa invisível e não interfere nos cliques */
+    opacity: 0; 
+    pointer-events: none; 
+    transition: opacity 0.2s ease; /* Efeito suave ao aparecer/sumir */
+    will-change: opacity; /* OTIMIZAÇÃO GPU */
 
-    /* Classe que o JavaScript vai adicionar para mostrar a foto */
-    .modal.active {
-        opacity: 1;
-        pointer-events: auto;
-    }
+    /* CORREÇÃO IPHONE 13: Garante área de respiro nas mídias em cima e embaixo */
+    padding: 75px 20px 105px 20px;
+    box-sizing: border-box;
+}
 
-    /* A foto em tela cheia */
-    .modal img {
-        max-width: 95%;
-        max-height: 90%;
-        border-radius: 15px;
-        object-fit: contain; /* Garante que a foto toda caiba na tela sem cortar */
-        box-shadow: 0 0 25px rgba(0,0,0,0.8);
-    }
+/* Classe que o JavaScript vai adicionar para mostrar a foto */
+.modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
 
-    /* --- Configuração da Galeria de Fotos Favoritas (Grade) --- */
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 2 fotos por linha */
-        gap: 12px; /* Espaço entre as fotos */
-        width: 100%;
-        max-width: 350px; /* Largura ideal para a tela do celular */
-        margin: 0 auto;
-    }
+/* A foto em tela cheia */
+.modal img {
+    max-width: 95%;
+    max-height: 70vh; /* CORREÇÃO: Limita a altura para sobrar espaço pro X, Música e Legenda */
+    border-radius: 15px;
+    object-fit: contain; /* Garante que a foto toda caiba na tela sem cortar */
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    margin: auto; /* Centraliza perfeitamente no espaço vertical restante */
+}
 
-    .gallery-grid img {
-        width: 100%;
-        height: 160px; /* Mantém todas as fotos com a mesma altura */
-        object-fit: cover; /* Corta a foto perfeitamente sem achatar o rosto */
-        border-radius: 12px; /* Cantinhos arredondados */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra elegante */
-        border: 3px solid white; /* Borda branca para dar um charme de Polaroid */
-        
-        /* Bloqueia o menu do celular igual fizemos nos cards */
-        -webkit-touch-callout: none;
-        user-select: none;
-    }
+/* --- Configuração da Galeria de Fotos Favoritas (Grade) --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 fotos por linha */
+    gap: 12px; /* Espaço entre as fotos */
+    width: 100%;
+    max-width: 350px; /* Largura ideal para a tela do celular */
+    margin: 0 auto;
+}
 
-    /* --- Fundo da seção de momentos favoritos (Degradê Suave) --- */
-    .gallery-section {
-        /* O degradê começando com a cor de fundo original e descendo para o branco puro */
-        background: linear-gradient(to bottom, #ffe6ea, #ffffff); 
-        
-        /* Adicionando um preenchimento para a seção respirar */
-        padding: 60px 20px;
-        
-        /* Curvinha elegante na transição entre a seção azul e esta */
-        border-top-left-radius: 30px; 
-        border-top-right-radius: 30px;
-        
-        /* Puxando a margem um pouco para cima para o arredondamento encaixar perfeito */
-        margin-top: -10px; 
-        position: relative;
-        z-index: 10;
-    }
+.gallery-grid img {
+    width: 100%;
+    height: 160px; /* Mantém todas as fotos com a mesma altura */
+    object-fit: cover; /* Corta a foto perfeitamente sem achatar o rosto */
+    border-radius: 12px; /* Cantinhos arredondados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra elegante */
+    border: 3px solid white; /* Borda branca para dar um charme de Polaroid */
+    
+    /* Bloqueia o menu do celular igual fizemos nos cards */
+    -webkit-touch-callout: none;
+    user-select: none;
+}
 
-    /* --- Botão de Fechar (X) da Galeria --- */
-    #close-btn {
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        color: white;
-        font-size: 45px;
-        font-weight: bold;
-        cursor: pointer;
-        z-index: 1001; /* Garante que fique acima da foto */
-        -webkit-tap-highlight-color: transparent; /* Remove borda azul de clique no mobile */
-    }
+/* --- Fundo da seção de momentos favoritos (Degradê Suave) --- */
+.gallery-section {
+    /* O degradê começando com a cor de fundo original e descendo para o branco puro */
+    background: linear-gradient(to bottom, #ffe6ea, #ffffff); 
+    
+    /* Adicionando um preenchimento para a seção respirar */
+    padding: 60px 20px;
+    
+    /* Curvinha elegante na transição entre a seção azul e esta */
+    border-top-left-radius: 30px; 
+    border-top-right-radius: 30px;
+    
+    /* Puxando a margem um pouco para cima para o arredondamento encaixar perfeito */
+    margin-top: -10px; 
+    position: relative;
+    z-index: 10;
+}
 
-    /* Um efeitinho para quando ela encostar no X, ele ficar rosa */
-    #close-btn:active {
-        color: #ff4d6d;
-    }
+/* --- Botão de Fechar (X) da Galeria --- */
+#close-btn {
+    position: absolute;
+    top: 25px; /* Levemente ajustado para fugir do notch do iPhone */
+    right: 30px;
+    color: white;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1010; /* Garante que fique acima de absolutamente tudo no modal */
+    -webkit-tap-highlight-color: transparent; /* Remove borda azul de clique no mobile */
+}
 
-    /* --- Estilização da Legenda das Fotos da Galeria --- */
-    #gallery-modal {
-        flex-direction: column; /* Faz o texto se posicionar obrigatoriamente abaixo da foto */
-    }
+/* Um efeitinho para quando ela encostar no X, ele ficar rosa */
+#close-btn:active {
+    color: #ff4d6d;
+}
 
-    #gallery-modal-caption {
-        color: white;
-        font-size: 1.1rem;
-        text-align: center;
-        margin-top: 15px;
-        padding: 0 20px;
-        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); /* Sombra preta para dar leitura perfeita */
-        max-width: 90%;
-        z-index: 1001;
-        font-weight: 500;
-    }
+/* --- Estilização da Legenda das Fotos da Galeria --- */
+#gallery-modal {
+    flex-direction: column; /* Faz o texto se posicionar obrigatoriamente abaixo da foto */
+}
 
-    /* --- Seção de Elogios (Visual Livre e Fotos Maiores) --- */
-    .elogios-section {
-        background-color: #ffffff;
-        padding: 50px 20px;
-    }
+#gallery-modal-caption {
+    color: white;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 15px;
+    padding: 0 20px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); /* Sombra preta para dar leitura perfeita */
+    max-width: 90%;
+    z-index: 1001;
+    font-weight: 500;
+    
+    /* CORREÇÃO: Evita que textos gigantes estourem a tela ou sobreponham elementos */
+    max-height: 12vh;
+    overflow-y: auto; 
+}
 
-    .elogios-section h2 {
-        color: #d81159; 
-        margin-bottom: 15px;
-        font-size: 1.8rem;
-    }
+/* --- Seção de Elogios (Visual Livre e Fotos Maiores) --- */
+.elogios-section {
+    background-color: #ffffff;
+    padding: 50px 20px;
+}
 
-    .elogios-section > p {
-        margin-bottom: 45px; /* Mais espaço antes de começar as fotos */
-        color: #555;
-        font-size: 1rem;
-        max-width: 90%;
-    }
+.elogios-section h2 {
+    color: #d81159; 
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
 
-    .elogio-container {
-        display: flex;
-        flex-direction: column;
-        gap: 45px; /* Espaço generoso entre cada foto para leitura fluida */
-        width: 100%;
-        max-width: 400px;
-        margin: 0 auto;
-    }
+.elogios-section > p {
+    margin-bottom: 45px; /* Mais espaço antes de começar as fotos */
+    color: #555;
+    font-size: 1rem;
+    max-width: 90%;
+}
 
-    /* O item livre (sem bordas ou fundos de card) */
-    .elogio-item {
-        display: flex;
-        align-items: center;
-        gap: 18px; /* Espaço entre a foto gigante e o texto */
-    }
+.elogio-container {
+    display: flex;
+    flex-direction: column;
+    gap: 45px; /* Espaço generoso entre cada foto para leitura fluida */
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
 
-    /* Inverte a ordem para a foto ficar na direita */
-    .elogio-item.inverte {
-        flex-direction: row-reverse;
-        text-align: right;
-    }
+/* O item livre (sem bordas ou fundos de card) */
+.elogio-item {
+    display: flex;
+    align-items: center;
+    gap: 18px; /* Espaço entre a foto gigante e o texto */
+}
 
-    /* Deixa as fotos BEM maiores com bordas arredondadas elegantes */
-    .elogio-item img {
-        width: 150px; /* Quase o dobro do tamanho anterior! */
-        height: 200px; /* Formato retrato que valoriza pessoas */
-        object-fit: cover; 
-        border-radius: 18px; /* Bordas de celular premium */
-        box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Sombra bonita pra destacar */
-        flex-shrink: 0; /* Impede o texto de esmagar a foto */
-    }
+/* Inverte a ordem para a foto ficar na direita */
+.elogio-item.inverte {
+    flex-direction: row-reverse;
+    text-align: right;
+}
 
-    .elogio-texto {
-        flex: 1; /* Ocupa todo o espaço restante do lado da foto */
-    }
+/* Deixa as fotos BEM maiores com bordas arredondadas elegantes */
+.elogio-item img {
+    width: 150px; /* Quase o dobro do tamanho anterior! */
+    height: 200px; /* Formato retrato que valoriza pessoas */
+    object-fit: cover; 
+    border-radius: 18px; /* Bordas de celular premium */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Sombra bonita pra destacar */
+    flex-shrink: 0; /* Impede o texto de esmagar a foto */
+}
 
-    .elogio-texto h3 {
-        color: #ff4d6d;
-        font-size: 1.25rem;
-        margin-bottom: 8px;
-    }
+.elogio-texto {
+    flex: 1; /* Ocupa todo o espaço restante do lado da foto */
+}
 
-    .elogio-texto p {
-        font-size: 0.95rem;
-        color: #4a4a4a;
-        line-height: 1.5;
-    }
+.elogio-texto h3 {
+    color: #ff4d6d;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
 
-    /* --- Estilo para o texto menorzinho abaixo do elogio --- */
-    .elogio-texto small {
-        display: block; /* Garante que ele pule para a linha de baixo */
-        font-size: 0.7rem; /* Deixa o texto visivelmente menor */
-        color: #888; /* Um cinza mais clarinho para não brigar com o texto principal */
-        margin-top: 6px; /* Dá um respiro entre o parágrafo e ele */
-        font-style: italic; /* Deixa em itálico para dar um charme especial */
-    }
+.elogio-texto p {
+    font-size: 0.95rem;
+    color: #4a4a4a;
+    line-height: 1.5;
+}
 
-    /* --- Seção da Surpresa Final --- */
-    .surprise-section {
-        background-color: #ffffff;
-        padding: 20px 20px 80px; /* Dá um espaço gostoso no final da página */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+/* --- Estilo para o texto menorzinho abaixo do elogio --- */
+.elogio-texto small {
+    display: block; /* Garante que ele pule para a linha de baixo */
+    font-size: 0.7rem; /* Deixa o texto visivelmente menor */
+    color: #888; /* Um cinza mais clarinho para não brigar com o texto principal */
+    margin-top: 6px; /* Dá um respiro entre o parágrafo e ele */
+    font-style: italic; /* Deixa em itálico para dar um charme especial */
+}
 
-    /* O Botão Mágico (Agora em tom de Azul) */
-    #surprise-btn {
-        background-color: #42a5f5; /* Um azul vibrante e alegre */
-        color: white;
-        border: none;
-        padding: 18px 30px;
-        font-size: 1.1rem;
-        font-weight: bold;
-        border-radius: 50px;
-        box-shadow: 0 4px 15px rgba(66, 165, 245, 0.4); /* Sombra azulada acompanhando o botão */
-        cursor: pointer;
-        transition: transform 0.2s ease, opacity 0.5s ease;
-        animation: pulsar 2s infinite; 
-        font-family: inherit;
-        will-change: transform; /* OTIMIZAÇÃO GPU */
-    }
+/* --- Seção da Surpresa Final --- */
+.surprise-section {
+    background-color: #ffffff;
+    padding: 20px 20px 80px; /* Dá um espaço gostoso no final da página */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    /* Quando ela clica no botão */
-    #surprise-btn:active {
-        transform: scale(0.95);
-        background-color: #1e88e5; /* Um azul um pouquinho mais escuro para o efeito de clique */
-    }
+/* O Botão Mágico (Agora em tom de Azul) */
+#surprise-btn {
+    background-color: #42a5f5; /* Um azul vibrante e alegre */
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(66, 165, 245, 0.4); /* Sombra azulada acompanhando o botão */
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.5s ease;
+    animation: pulsar 2s infinite; 
+    font-family: inherit;
+    will-change: transform; /* OTIMIZAÇÃO GPU */
+}
 
-    /* A Cartinha (Escondida por padrão) */
-    .hidden-letter {
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: all 0.8s ease; 
-        will-change: max-height, opacity, margin, padding; /* OTIMIZAÇÃO GPU */
-        
-        background: #e3f2fd; /* Um azul bebê bem suave, romântico e delicado */
-        border-radius: 15px;
-        border: 2px dashed #90caf9; /* Bordinha pontilhada num azul um tom mais escuro para dar destaque */
-        width: 100%;
-        max-width: 400px;
-        text-align: center;
-    }
+/* Quando ela clica no botão */
+#surprise-btn:active {
+    transform: scale(0.95);
+    background-color: #1e88e5; /* Um azul um pouquinho mais escuro para o efeito de clique */
+}
 
-    /* Classe que o JS vai colocar para mostrar a cartinha */
-    .hidden-letter.show {
-        max-height: 2500px; /* Espaço de sobra pro seu texto */
-        opacity: 1;
-        margin-top: 20px;
-        padding: 30px 20px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
+/* A Cartinha (Escondida por padrão) */
+.hidden-letter {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.8s ease; 
+    will-change: max-height, opacity, margin, padding; /* OTIMIZAÇÃO GPU */
+    
+    background: #e3f2fd; /* Um azul bebê bem suave, romântico e delicado */
+    border-radius: 15px;
+    border: 2px dashed #90caf9; /* Bordinha pontilhada num azul um tom mais escuro para dar destaque */
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
 
-    .hidden-letter h3 {
-        color: #d81159;
-        margin-bottom: 15px;
-        font-size: 1.4rem;
-    }
+/* Classe que o JS vai colocar para mostrar a cartinha */
+.hidden-letter.show {
+    max-height: 2500px; /* Espaço de sobra pro seu texto */
+    opacity: 1;
+    margin-top: 20px;
+    padding: 30px 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
 
-    .hidden-letter p {
-        color: #4a4a4a;
-        font-size: 1.05rem;
-        line-height: 1.6;
-        margin-bottom: 15px;
-    }
+.hidden-letter h3 {
+    color: #d81159;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
 
-    /* ==========================================
-    SEÇÃO DE STORIES / DESTAQUES
-    ========================================== */
-    .stories-section {
-        background-color: #fff5f5; /* Mesma cor do fundo do site */
-        padding: 30px 0 10px 0;
-        width: 100%;
-        min-height: auto; /* Sobrescreve o min-height: 100vh padrão das sections */
-    }
+.hidden-letter p {
+    color: #4a4a4a;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
 
-    .stories-wrapper {
-        display: flex;
-        gap: 18px;
-        padding: 0 20px;
-        overflow-x: auto; /* Permite arrastar para o lado */
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch; /* Deixa o deslize suave no iPhone */
-        scrollbar-width: none; /* Esconde a barra no Firefox */
-        overscroll-behavior-x: contain; /* OTIMIZAÇÃO: Evita que puxar pro lado feche o site */
-    }
+/* ==========================================
+SEÇÃO DE STORIES / DESTAKES
+========================================== */
+.stories-section {
+    background-color: #fff5f5; /* Mesma cor do fundo do site */
+    padding: 30px 0 10px 0;
+    width: 100%;
+    min-height: auto; /* Sobrescreve o min-height: 100vh padrão das sections */
+}
 
-    /* Esconde a barra de rolagem no Chrome/Safari/Edge */
-    .stories-wrapper::-webkit-scrollbar {
-        display: none; 
-    }
+.stories-wrapper {
+    display: flex;
+    gap: 18px;
+    padding: 0 20px;
+    overflow-x: auto; /* Permite arrastar para o lado */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; /* Deixa o deslize suave no iPhone */
+    scrollbar-width: none; /* Esconde a barra no Firefox */
+    overscroll-behavior-x: contain; /* OTIMIZAÇÃO: Evita que puxar pro lado feche o site */
+}
 
-    .story-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        cursor: pointer;
-        flex-shrink: 0; /* Impede que os círculos fiquem esmagados */
-        transition: transform 0.2s;
-        -webkit-tap-highlight-color: transparent;
-    }
+/* Esconde a barra de rolagem no Chrome/Safari/Edge */
+.stories-wrapper::-webkit-scrollbar {
+    display: none; 
+}
 
-    .story-item:active {
-        transform: scale(0.95); /* Efeito de clique */
-    }
+.story-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    flex-shrink: 0; /* Impede que os círculos fiquem esmagados */
+    transition: transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
 
-    /* O anel colorido clássico do Instagram */
-    .story-ring {
-        width: 82px;
-        height: 82px;
-        border-radius: 50%;
-        padding: 3px; /* Espessura do anel colorido */
-        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+.story-item:active {
+    transform: scale(0.95); /* Efeito de clique */
+}
 
-    /* A foto de capa dentro do anel */
-    .story-ring img {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid #fff5f5; /* Bordinha branca separando a foto do anel colorido */
-    }
+/* O anel colorido clássico do Instagram */
+.story-ring {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    padding: 3px; /* Espessura do anel colorido */
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
-    .story-item span {
-        font-size: 0.85rem;
-        color: #4a4a4a;
-        font-weight: 500;
-    }
+/* A foto de capa dentro do anel */
+.story-ring img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff5f5; /* Bordinha branca separando a foto do anel colorido */
+}
 
-    #gallery-modal-vid {
-        max-width: 95%;
-        max-height: 85%;
-        border-radius: 12px;
-        box-shadow: 0 0 25px rgba(0,0,0,0.8);
-        border: 3px solid white; /* Borda estilo polaroid/story */
-        cursor: pointer; /* Substituímos o pointer-events por isso para funcionar no iPhone/Android */
-    }
+.story-item span {
+    font-size: 0.85rem;
+    color: #4a4a4a;
+    font-weight: 500;
+}
 
-    /* ==========================================
-    SETAS DE NAVEGAÇÃO DOS STORIES (DESKTOP)
-    ========================================== */
+#gallery-modal-vid {
+    max-width: 95%;
+    max-height: 70vh; /* CORREÇÃO: Reduzido de 85% para o mesmo ajuste de altura do iPhone */
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    border: 3px solid white; /* Borda estilo polaroid/story */
+    cursor: pointer; /* Substituímos o pointer-events por isso para funcionar no iPhone/Android */
+    margin: auto; /* Centraliza perfeitamente no espaço vertical restante */
+}
+
+/* ==========================================
+SETAS DE NAVEGAÇÃO DOS STORIES (DESKTOP)
+========================================== */
+.story-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.85);
+    color: #1a1a1a;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1010; /* Garante que fica por cima da imagem */
+    transition: background 0.2s, transform 0.2s, opacity 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.story-nav-btn:hover {
+    background: #ffffff;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.story-nav-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+#story-prev-btn {
+    left: 25px;
+}
+
+#story-next-btn {
+    right: 25px;
+}
+
+/* Classe inteligente para esconder a seta da esquerda quando estiver no primeiro story */
+.story-nav-btn.escondido {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* REVISÃO RESPONSIVA: No celular, esconde as setas para usar o toque nativo do Insta */
+@media (max-width: 768px) {
     .story-nav-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(255, 255, 255, 0.85);
-        color: #1a1a1a;
-        border: none;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        font-size: 1.3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 1010; /* Garante que fica por cima da imagem */
-        transition: background 0.2s, transform 0.2s, opacity 0.2s;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        display: none;
     }
+}
 
-    .story-nav-btn:hover {
-        background: #ffffff;
-        transform: translateY(-50%) scale(1.05);
-    }
+/* ==========================================
+ADICIONAL: CONTADOR DE TEMPO JUNTOS
+========================================== */
+.contador-container {
+    background-color: #ffffff;
+    margin: 35px auto 15px;
+    padding: 20px 15px;
+    border-radius: 18px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
+    width: calc(100% - 40px);
+    max-width: 350px;
+    text-align: center;
+    border: 1px solid #ffe6ea;
+}
 
-    .story-nav-btn:active {
-        transform: translateY(-50%) scale(0.95);
-    }
+.contador-container h3 {
+    color: #ff4d6d;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
 
-    #story-prev-btn {
-        left: 25px;
-    }
+#contador {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
 
-    #story-next-btn {
-        right: 25px;
-    }
+#contador span {
+    background: #ffe6ea;
+    color: #d81159;
+    padding: 10px 5px;
+    border-radius: 12px;
+    min-width: 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    box-shadow: inset 0 -3px 0 rgba(216, 17, 89, 0.1);
+}
 
-    /* Classe inteligente para esconder a seta da esquerda quando estiver no primeiro story */
-    .story-nav-btn.escondido {
-        opacity: 0;
-        pointer-events: none;
-    }
+#contador span strong {
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
 
-    /* REVISÃO RESPONSIVA: No celular, esconde as setas para usar o toque nativo do Insta */
-    @media (max-width: 768px) {
-        .story-nav-btn {
-            display: none;
-        }
-    }
+/* ==========================================
+ADICIONAL: PLAYLIST POP-UP FLUTUANTE
+========================================== */
+#music-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 2000;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    border: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
 
-    /* ==========================================
-    ADICIONAL: CONTADOR DE TEMPO JUNTOS
-    ========================================== */
-    .contador-container {
-        background-color: #ffffff;
-        margin: 35px auto 15px;
-        padding: 20px 15px;
-        border-radius: 18px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
-        width: calc(100% - 40px);
-        max-width: 350px;
-        text-align: center;
-        border: 1px solid #ffe6ea;
-    }
+#music-btn:active { transform: scale(0.9); }
 
-    .contador-container h3 {
-        color: #ff4d6d;
-        font-size: 1rem;
-        margin-bottom: 15px;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-    }
+/* Fundo escurecido e borrado do Pop-up */
+.music-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px); /* Efeito de vidro borrado ao fundo */
+    -webkit-backdrop-filter: blur(4px); /* Suporte extra para iOS */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2500; /* Fica acima do botão flutuante */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    will-change: opacity; /* OTIMIZAÇÃO GPU */
+}
 
-    #contador {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-    }
+/* Quando o pop-up estiver ativo */
+.music-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
 
-    #contador span {
-        background: #ffe6ea;
-        color: #d81159;
-        padding: 10px 5px;
-        border-radius: 12px;
-        min-width: 72px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.75rem;
-        font-weight: 500;
-        box-shadow: inset 0 -3px 0 rgba(216, 17, 89, 0.1);
-    }
+/* O cartão do Pop-up em si */
+.music-modal-card {
+    background: white;
+    width: 90%;
+    max-width: 320px;
+    padding: 25px 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 1px solid #ffe6ea;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+    will-change: transform; /* OTIMIZAÇÃO GPU */
+}
 
-    #contador span strong {
-        font-size: 1.4rem;
-        display: block;
-        margin-bottom: 2px;
-        font-weight: bold;
-    }
+.music-modal-overlay.active .music-modal-card {
+    transform: scale(1);
+}
 
-    /* ==========================================
-    ADICIONAL: PLAYLIST POP-UP FLUTUANTE
-    ========================================== */
-    #music-btn {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        z-index: 2000;
-        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-        border: none;
-        width: 55px;
-        height: 55px;
-        border-radius: 50%;
-        color: white;
-        font-size: 22px;
-        cursor: pointer;
-        box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.2s ease;
-        -webkit-touch-callout: none;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
-    }
+.music-modal-card h3 {
+    color: #d81159;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
 
-    #music-btn:active { transform: scale(0.9); }
+.music-modal-card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+}
 
-    /* Fundo escurecido e borrado do Pop-up */
-    .music-modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(4px); /* Efeito de vidro borrado ao fundo */
-        -webkit-backdrop-filter: blur(4px); /* Suporte extra para iOS */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2500; /* Fica acima do botão flutuante */
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-        will-change: opacity; /* OTIMIZAÇÃO GPU */
-    }
+/* Lista de botões das músicas (Agora com rolagem interna) */
+.playlist-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+    
+    /* --- AS DUAS LINHAS MÁGICAS --- */
+    max-height: 240px; /* Define uma altura máxima limite para a lista */
+    overflow-y: auto;  /* Ativa a rolagem vertical se passar da altura máxima */
+    padding-right: 4px; /* Dá um espacinho para a barra de rolagem não colar nos botões */
+}
 
-    /* Quando o pop-up estiver ativo */
-    .music-modal-overlay.active {
-        opacity: 1;
-        pointer-events: auto;
-    }
+/* Opcional: Deixa a barra de rolagem do celular bem fininha e discreta */
+.playlist-options::-webkit-scrollbar {
+    width: 4px;
+}
 
-    /* O cartão do Pop-up em si */
-    .music-modal-card {
-        background: white;
-        width: 90%;
-        max-width: 320px;
-        padding: 25px 20px;
-        border-radius: 20px;
-        text-align: center;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        border: 1px solid #ffe6ea;
-        transform: scale(0.8);
-        transition: transform 0.3s ease;
-        will-change: transform; /* OTIMIZAÇÃO GPU */
-    }
+.playlist-options::-webkit-scrollbar-thumb {
+    background-color: #ffe6ea;
+    border-radius: 10px;
+}
 
-    .music-modal-overlay.active .music-modal-card {
-        transform: scale(1);
-    }
+.track-btn {
+    background: #fff5f5;
+    border: 1px solid #ffe6ea;
+    padding: 12px 15px;
+    border-radius: 12px;
+    color: #4a4a4a;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s, transform 0.1s;
+    -webkit-tap-highlight-color: transparent;
+}
 
-    .music-modal-card h3 {
-        color: #d81159;
-        font-size: 1.2rem;
-        margin-bottom: 8px;
-    }
+.track-btn span { font-size: 1.2rem; }
 
-    .music-modal-card p {
-        font-size: 0.9rem;
-        color: #666;
-        margin-bottom: 20px;
-    }
+.track-btn:active {
+    transform: scale(0.98);
+    background: #ffe6ea;
+}
 
-    /* Lista de botões das músicas (Agora com rolagem interna) */
-    .playlist-options {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 15px;
-        
-        /* --- AS DUAS LINHAS MÁGICAS --- */
-        max-height: 240px; /* Define uma altura máxima limite para a lista */
-        overflow-y: auto;  /* Ativa a rolagem vertical se passar da altura máxima */
-        padding-right: 4px; /* Dá um espacinho para a barra de rolagem não colar nos botões */
-    }
+/* Estilo quando a música estiver tocando (destaque) */
+.track-btn.playing {
+    background: #ff4d6d;
+    color: white;
+    border-color: #ff4d6d;
+    box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
+}
 
-    /* Opcional: Deixa a barra de rolagem do celular bem fininha e discreta */
-    .playlist-options::-webkit-scrollbar {
-        width: 4px;
-    }
+/* Botões de controle inferior */
+.playlist-close-btn {
+    width: 100%;
+    background: #e3f2fd;
+    color: #0d47a1;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 8px;
+    -webkit-tap-highlight-color: transparent;
+}
 
-    .playlist-options::-webkit-scrollbar-thumb {
-        background-color: #ffe6ea;
-        border-radius: 10px;
-    }
-
-    .track-btn {
-        background: #fff5f5;
-        border: 1px solid #ffe6ea;
-        padding: 12px 15px;
-        border-radius: 12px;
-        color: #4a4a4a;
-        font-size: 0.95rem;
-        font-weight: 600;
-        cursor: pointer;
-        text-align: left;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        transition: background 0.2s, transform 0.1s;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .track-btn span { font-size: 1.2rem; }
-
-    .track-btn:active {
-        transform: scale(0.98);
-        background: #ffe6ea;
-    }
-
-    /* Estilo quando a música estiver tocando (destaque) */
-    .track-btn.playing {
-        background: #ff4d6d;
-        color: white;
-        border-color: #ff4d6d;
-        box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
-    }
-
-    /* Botões de controle inferior */
-    .playlist-close-btn {
-        width: 100%;
-        background: #e3f2fd;
-        color: #0d47a1;
-        border: none;
-        padding: 10px;
-        border-radius: 10px;
-        font-weight: bold;
-        font-size: 0.9rem;
-        cursor: pointer;
-        margin-top: 8px;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .playlist-close-btn.fechar {
-        background: #eeeeee;
-        color: #666;
-    }
+.playlist-close-btn.fechar {
+    background: #eeeeee;
+    color: #666;
+}
