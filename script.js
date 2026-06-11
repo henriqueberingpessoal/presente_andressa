@@ -351,3 +351,56 @@ function criarCoracao() {
         coracao.remove();
     }, 4050);
 }
+
+// ==========================================
+// 7. CONTROLE DA PLAYLIST (POP-UP)
+// ==========================================
+const musicBtn = document.getElementById('music-btn');
+const playlistModal = document.getElementById('playlist-modal');
+const closePlaylistBtn = document.getElementById('close-playlist-btn');
+const pauseTrackBtn = document.getElementById('pause-track-btn');
+const bgMusic = document.getElementById('bg-music');
+const trackBtns = document.querySelectorAll('.track-btn');
+
+// Abre o Pop-up ao clicar no botão flutuante
+musicBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    playlistModal.classList.add('active');
+});
+
+// Fecha o Pop-up ao clicar no botão Fechar
+closePlaylistBtn.addEventListener('click', () => {
+    playlistModal.classList.remove('active');
+});
+
+// Fecha o Pop-up se clicar fora do card branco (no fundo borrado)
+playlistModal.addEventListener('click', (e) => {
+    if (e.target === playlistModal) {
+        playlistModal.classList.remove('active');
+    }
+});
+
+// Lógica de seleção e play das músicas
+trackBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const musicSrc = btn.getAttribute('data-src');
+        
+        // Se mudou de música ou estava pausado
+        if (bgMusic.src !== window.location.origin + '/' + musicSrc || bgMusic.paused) {
+            bgMusic.src = musicSrc;
+            bgMusic.play();
+            musicBtn.innerText = '🔊'; // Botão flutuante mostra que está tocando
+        }
+        
+        // Remove a classe 'playing' de todos e adiciona só no que foi clicado
+        trackBtns.forEach(b => b.classList.remove('playing'));
+        btn.classList.add('playing');
+    });
+});
+
+// Botão de Pausar dentro do Pop-up
+pauseTrackBtn.addEventListener('click', () => {
+    bgMusic.pause();
+    musicBtn.innerText = '🎵'; // Volta para o ícone padrão
+    trackBtns.forEach(b => b.classList.remove('playing')); // Apaga o destaque visual
+});

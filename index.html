@@ -8,6 +8,34 @@
 </head>
 <body>
 
+    <button id="music-btn">🎵</button>
+
+<div id="playlist-modal" class="music-modal-overlay">
+    <div class="music-modal-card">
+        <h3>Escolha nossa trilha sonora ❤️</h3>
+        <p>Selecione uma música para tocar de fundo:</p>
+        
+        <div class="playlist-options">
+            <button class="track-btn" data-src="musica/que sorte a nossa.mp3">
+            Que Sorte a Nossa - M&K
+            </button>
+            
+            <button class="track-btn" data-src="musica/die_with_a_smile.mp3">
+            Die With A Smile - Bruno Mars
+            </button>
+            
+            <button class="track-btn" data-src="musica/ainda_bem.mp3">
+            Ainda Bem - Thiaguinho
+            </button>
+        </div>
+
+        <button id="pause-track-btn" class="playlist-close-btn">Pausar Música ⏸️</button>
+        <button id="close-playlist-btn" class="playlist-close-btn fechar">Fechar</button>
+    </div>
+</div>
+
+<audio id="bg-music" loop></audio>
+    
     <section class="hero-section">
         <div class="heart">❤️</div>
         <h1>Feliz Dia dos Namorados, Minha Lindona!</h1>

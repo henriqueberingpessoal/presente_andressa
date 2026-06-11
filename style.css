@@ -608,3 +608,142 @@
     margin-bottom: 2px;
     font-weight: bold;
 }
+
+/* ==========================================
+   ADICIONAL: PLAYLIST POP-UP FLUTUANTE
+   ========================================== */
+#music-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 2000;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    border: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+#music-btn:active { transform: scale(0.9); }
+
+/* Fundo escurecido e borrado do Pop-up */
+.music-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px); /* Efeito de vidro borrado ao fundo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2500; /* Fica acima do botão flutuante */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Quando o pop-up estiver ativo */
+.music-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* O cartão do Pop-up em si */
+.music-modal-card {
+    background: white;
+    width: 90%;
+    max-width: 320px;
+    padding: 25px 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 1px solid #ffe6ea;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.music-modal-overlay.active .music-modal-card {
+    transform: scale(1);
+}
+
+.music-modal-card h3 {
+    color: #d81159;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.music-modal-card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Lista de botões das músicas */
+.playlist-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.track-btn {
+    background: #fff5f5;
+    border: 1px solid #ffe6ea;
+    padding: 12px 15px;
+    border-radius: 12px;
+    color: #4a4a4a;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.track-btn span { font-size: 1.2rem; }
+
+.track-btn:active {
+    transform: scale(0.98);
+    background: #ffe6ea;
+}
+
+/* Estilo quando a música estiver tocando (destaque) */
+.track-btn.playing {
+    background: #ff4d6d;
+    color: white;
+    border-color: #ff4d6d;
+    box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
+}
+
+/* Botões de controle inferior */
+.playlist-close-btn {
+    width: 100%;
+    background: #e3f2fd;
+    color: #0d47a1;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.playlist-close-btn.fechar {
+    background: #eeeeee;
+    color: #666;
+}
