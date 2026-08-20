@@ -153,6 +153,22 @@ const storiesData = {
         { type: 'image', src: 'destaques/2026/13.jpeg', legenda: '' },
         { type: 'image', src: 'destaques/2026/14.jpeg', legenda: '' },
         { type: 'image', src: 'destaques/2026/15.jpeg', legenda: '' },
+        { type: 'image', src: 'destaques/2026/16.jpeg', legenda: 'muito bom esse final de semana, te amo' },
+        { type: 'image', src: 'destaques/2026/17.jpeg', legenda: '🤨' },
+        { type: 'image', src: 'destaques/2026/18.jpeg', legenda: 'modelos' },
+        { type: 'image', src: 'destaques/2026/19.jpeg', legenda: 'gatinha pspspsps' },
+        { type: 'image', src: 'destaques/2026/20.jpeg', legenda: 'palhacinha, alá teu pai' },
+        { type: 'image', src: 'destaques/2026/21.jpeg', legenda: 'linda demais meu deus' },
+        { type: 'image', src: 'destaques/2026/22.jpeg', legenda: 'chave' },
+        { type: 'image', src: 'destaques/2026/23.jpeg', legenda: 'lindos' },
+        { type: 'image', src: 'destaques/2026/24.jpeg', legenda: 'feliz' },
+        { type: 'image', src: 'destaques/2026/25.jpeg', legenda: 'abotoa ai meu amor' },
+        { type: 'image', src: 'destaques/2026/26.jpeg', legenda: 'esse dia foi massa' },
+        { type: 'video', src: 'destaques/2026/27.mp4', legenda: 'minha dançarina favorita' },
+        { type: 'video', src: 'destaques/2026/28.mp4', legenda: 'manja muito do passinho do jamal' },
+        { type: 'image', src: 'destaques/2026/29.jpeg', legenda: 'nóis no aniversário da rafaela' },
+        { type: 'image', src: 'destaques/2026/30.jpeg', legenda: 'de ontem' },
+        { type: 'image', src: 'destaques/2026/31.jpeg', legenda: 'esse dia foi louco demais😭' },
         { type: 'image', src: '', legenda: 'Ainda temos muito tempo pra tirar muitas fotos esse ano, e nos próximos, beijos lindona' }
     ]
 };
