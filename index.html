@@ -4,30 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para o amorzão da minha vida❤️</title>
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="preload" as="image" href="imagens/image_1.JPEG">
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
-    <button id="music-btn" aria-label="Abrir playlist">🎵</button>
+    <button id="music-btn" type="button" aria-label="Abrir playlist">🎵</button>
 
     <div id="playlist-modal" class="music-modal-overlay" aria-hidden="true">
-        <div class="music-modal-card">
-            <h3>Escolha nossa trilha sonora ❤️</h3>
+        <div class="music-modal-card" role="dialog" aria-modal="true" aria-labelledby="playlist-title">
+            <h3 id="playlist-title">Escolha nossa trilha sonora ❤️</h3>
             <p>Selecione uma música para tocar de fundo:</p>
             
             <div class="playlist-options">
-                <button class="track-btn" data-src="musica/quesorteanossa.mp3">Que Sorte a Nossa - M&K</button>
-                <button class="track-btn" data-src="musica/eujuro.mp3">Eu Juro - Ferrugem</button>
-                <button class="track-btn" data-src="musica/aindabem.mp3">Ainda Bem / Resposta - Menos é Mais</button>
-                <button class="track-btn" data-src="musica/atequeenfim.mp3">Até Que Enfim - Ferrugem</button>
-                <button class="track-btn" data-src="musica/osanjoscantam.mp3">Os Anjos Cantam - J&M</button>
-                <button class="track-btn" data-src="musica/eamor.mp3">É Amor - J&M</button>
-                <button class="track-btn" data-src="musica/tevivo.mp3">Te Vivo - Luan Santana</button>
-                <button class="track-btn" data-src="musica/diewithasmile.mp3">Die With a Smile - Bruno Mars</button>
+                <button type="button" class="track-btn" data-src="musica/quesorteanossa.mp3">Que Sorte a Nossa - M&amp;K</button>
+                <button type="button" class="track-btn" data-src="musica/eujuro.mp3">Eu Juro - Ferrugem</button>
+                <button type="button" class="track-btn" data-src="musica/aindabem.mp3">Ainda Bem / Resposta - Menos é Mais</button>
+                <button type="button" class="track-btn" data-src="musica/atequeenfim.mp3">Até Que Enfim - Ferrugem</button>
+                <button type="button" class="track-btn" data-src="musica/osanjoscantam.mp3">Os Anjos Cantam - J&amp;M</button>
+                <button type="button" class="track-btn" data-src="musica/eamor.mp3">É Amor - J&amp;M</button>
+                <button type="button" class="track-btn" data-src="musica/tevivo.mp3">Te Vivo - Luan Santana</button>
+                <button type="button" class="track-btn" data-src="musica/diewithasmile.mp3">Die With a Smile - Bruno Mars</button>
             </div>
 
-            <button id="pause-track-btn" class="playlist-close-btn">Pausar Música ⏸️</button>
-            <button id="close-playlist-btn" class="playlist-close-btn fechar">Fechar</button>
+            <button id="pause-track-btn" type="button" class="playlist-close-btn">Pausar Música ⏸️</button>
+            <button id="close-playlist-btn" type="button" class="playlist-close-btn fechar">Fechar</button>
         </div>
     </div>
 
@@ -35,38 +36,43 @@
     
     <main>
         <section class="hero-section">
-            <div class="heart">❤️</div>
+            <div class="heart" aria-hidden="true">❤️</div>
             <h1>Feliz Dia dos Namorados, Minha Lindona!</h1>
             <p>Preparei uma surpresinha para você... Arrasta para baixo! ↓</p>
         </section>
 
         <div class="contador-container">
             <h3>Estamos construindo nossa história há:</h3>
-            <div id="contador">Carregando nosso tempo...</div>
+            <div id="contador">
+                <span><strong id="cnt-dias">0</strong>dias</span>
+                <span><strong id="cnt-horas">00</strong>horas</span>
+                <span><strong id="cnt-min">00</strong>min</span>
+                <span><strong id="cnt-seg">00</strong>seg</span>
+            </div>
         </div>
 
         <section class="stories-section">
-            <h1>Retrospectivazinha</h1>
+            <h2>Retrospectivazinha</h2>
             <div class="stories-wrapper">
                 
-                <div class="story-item" data-story="viagens">
+                <div class="story-item" data-story="viagens" role="button" tabindex="0">
                     <div class="story-ring">
-                        <img src="imagens/capa24.jpeg" alt="Capa 2024">
+                        <img src="imagens/capa24.jpeg" alt="Capa 2024" decoding="async">
                     </div>
                     <span>2024</span>
                     <small>nosso comecinho<br>lindo né?</small>
                 </div>
 
-                <div class="story-item" data-story="lanches">
+                <div class="story-item" data-story="lanches" role="button" tabindex="0">
                     <div class="story-ring">
-                        <img src="imagens/bailechave.JPEG" alt="Capa 2025">
+                        <img src="imagens/bailechave.JPEG" alt="Capa 2025" decoding="async">
                     </div>
                     <span>2025</span>
                 </div>
 
-                <div class="story-item" data-story="roles">
+                <div class="story-item" data-story="roles" role="button" tabindex="0">
                     <div class="story-ring">
-                        <img src="imagens/capa26.jpeg" alt="Capa 2026">
+                        <img src="imagens/capa26.jpeg" alt="Capa 2026" decoding="async">
                     </div>
                     <span>2026</span>
                 </div>
@@ -81,31 +87,31 @@
             <div class="card-container" id="container-divertido">
                 
                 <div class="card">
-                    <img src="imagens/fofinha.JPEG" alt="Amo os lanchinhos" loading="lazy">
+                    <img src="imagens/fofinha.JPEG" alt="Amo os lanchinhos" loading="lazy" decoding="async">
                     <p>Amo os lanchinhos com você</p>
                 </div>
 
                 <div class="card">
                     <div class="card-img-group grid-2">
-                        <img src="imagens/anonovo.JPEG" alt="Vendo coisas" loading="lazy">
-                        <img src="imagens/fofinha2.JPEG" alt="Vendo coisas" loading="lazy">
+                        <img src="imagens/anonovo.JPEG" alt="Vendo coisas" loading="lazy" decoding="async">
+                        <img src="imagens/fofinha2.JPEG" alt="Vendo coisas" loading="lazy" decoding="async">
                     </div>
                     <p>Adoro quando vemos coisa juntinhos, mesmo você sendo viciada no celular 👀</p>
                 </div>
 
                 <div class="card">
                     <div class="card-img-group grid-3">
-                        <img src="imagens/anvnicolly.JPEG" alt="Aniversário" loading="lazy">
-                        <img src="imagens/anvmadu.JPEG" alt="Aniversário" loading="lazy">
-                        <img src="imagens/anvlevi.JPEG" alt="Aniversário" loading="lazy">
+                        <img src="imagens/anvnicolly.JPEG" alt="Aniversário" loading="lazy" decoding="async">
+                        <img src="imagens/anvmadu.JPEG" alt="Aniversário" loading="lazy" decoding="async">
+                        <img src="imagens/anvlevi.JPEG" alt="Aniversário" loading="lazy" decoding="async">
                     </div>
                     <p>Festas que eu nem fazia tanta questão de ir, mas sua presença as deixou mais interessantes.</p>
                 </div>
 
                 <div class="card">
                     <div class="card-img-group grid-2">
-                        <img src="imagens/engracadinho.JPEG" alt="Foto engraçadinha" loading="lazy">
-                        <img src="imagens/anvanalu.JPEG" alt="Foto engraçadinha" loading="lazy">
+                        <img src="imagens/engracadinho.JPEG" alt="Foto engraçadinha" loading="lazy" decoding="async">
+                        <img src="imagens/anvanalu.JPEG" alt="Foto engraçadinha" loading="lazy" decoding="async">
                     </div>
                     <p>Fotos engraçadinhas que eu adoro tirar</p>
                 </div>
@@ -119,12 +125,12 @@
             <p>clica nas fotinhas</p>
             
             <div class="gallery-grid" id="galeria-fotos">
-                <img src="imagens/anonovo2.JPEG" alt="Momento inesquecível" data-legenda="Uma das melhores viradas de ano da minha vida, e você estava tão linda (como sempre)❤️" loading="lazy">
-                <img src="imagens/bailechave.JPEG" alt="Nosso momento" data-legenda="Esse baile foi incrível e você deixou melhor ainda. Ainda bem que esse evento foi com a sua presença ao meu lado (e você tava um absurdo de tão linda)" loading="lazy">
-                <img src="imagens/apaixonados.JPEG" alt="Amo muito" data-legenda="Me sinto tão apaixonado e tão querido vendo essa foto e seu olhar lindo" loading="lazy">
-                <img src="imagens/apaixonados2.JPEG" alt="Pessoa certa" data-legenda="Adoro essa foto. Seu sorrisinho e seu olhar mexeram comigo kkkkk" loading="lazy">
-                <img src="imagens/linda2.JPEG" alt="minha linda" data-legenda="Um dos nossos melhores encontros. Você sempre linda, e lembro de momentos em que você não parava de falar toda animada e com o olhar feliz, adoro quando você faz isso❤️" loading="lazy">
-                <img src="imagens/onibus.JPEG" alt="amo muito" data-legenda="Você deixou até a ginco mais legal. Obrigado por ser tão incrível meu amor" loading="lazy">
+                <img src="imagens/anonovo2.JPEG" alt="Momento inesquecível" data-legenda="Uma das melhores viradas de ano da minha vida, e você estava tão linda (como sempre)❤️" loading="lazy" decoding="async">
+                <img src="imagens/bailechave.JPEG" alt="Nosso momento" data-legenda="Esse baile foi incrível e você deixou melhor ainda. Ainda bem que esse evento foi com a sua presença ao meu lado (e você tava um absurdo de tão linda)" loading="lazy" decoding="async">
+                <img src="imagens/apaixonados.JPEG" alt="Amo muito" data-legenda="Me sinto tão apaixonado e tão querido vendo essa foto e seu olhar lindo" loading="lazy" decoding="async">
+                <img src="imagens/apaixonados2.JPEG" alt="Pessoa certa" data-legenda="Adoro essa foto. Seu sorrisinho e seu olhar mexeram comigo kkkkk" loading="lazy" decoding="async">
+                <img src="imagens/linda2.JPEG" alt="minha linda" data-legenda="Um dos nossos melhores encontros. Você sempre linda, e lembro de momentos em que você não parava de falar toda animada e com o olhar feliz, adoro quando você faz isso❤️" loading="lazy" decoding="async">
+                <img src="imagens/onibus.JPEG" alt="amo muito" data-legenda="Você deixou até a ginco mais legal. Obrigado por ser tão incrível meu amor" loading="lazy" decoding="async">
             </div>
         </section>
 
@@ -135,7 +141,7 @@
             <div class="elogio-container">
                 
                 <div class="elogio-item">
-                    <img src="imagens/linda1.JPEG" alt="Seu Sorriso" loading="lazy">
+                    <img src="imagens/linda1.JPEG" alt="Seu Sorriso" loading="lazy" decoding="async">
                     <div class="elogio-texto">
                         <h3>Fotinhas que você me manda</h3>
                         <p>Adoro quando você me manda fotos toda lindona. Seu sorrisinho de canto e seu olho lindão são maravilhosos</p>
@@ -143,7 +149,7 @@
                 </div>
 
                 <div class="elogio-item inverte">
-                    <img src="imagens/melhorjogadora.JPEG" alt="Seu Olhar" loading="lazy">
+                    <img src="imagens/melhorjogadora.JPEG" alt="Seu Olhar" loading="lazy" decoding="async">
                     <div class="elogio-texto">
                         <h3>Minha jogadora</h3>
                         <p>Adoro quando você me chama pra te ver jogar. A melhor (e minha) jogadora, você é demais.</p>
@@ -152,7 +158,7 @@
                 </div>
 
                 <div class="elogio-item">
-                    <img src="imagens/linda3.JPEG" alt="Sua Essência" loading="lazy">
+                    <img src="imagens/linda3.JPEG" alt="Sua Essência" loading="lazy" decoding="async">
                     <div class="elogio-texto">
                         <h3>Sempre tão linda</h3>
                         <p>Você não gosta da maioria das fotos, como essa, mas eu sempre te acho linda em todas e sempre quando tiro uma foto nova sua eu fico admirando, você é tão maravilhosa</p>
@@ -160,7 +166,7 @@
                 </div>
  
                 <div class="elogio-item inverte">
-                    <img src="imagens/linda4.JPEG" alt="Sua Companhia" loading="lazy">
+                    <img src="imagens/linda4.JPEG" alt="Sua Companhia" loading="lazy" decoding="async">
                     <div class="elogio-texto">
                         <h3>Amo sua companhia</h3>
                         <p>Qualquer lugar se torna o melhor do mundo quando você está lá comigo. E como sempre vou exaltar o quão linda você é, assim como nessa foto e em todas as outras.</p>
@@ -168,7 +174,7 @@
                 </div>
 
                 <div class="elogio-item">
-                    <img src="imagens/linda5.JPEG" alt="Seu Jeitinho" loading="lazy">
+                    <img src="imagens/linda5.JPEG" alt="Seu Jeitinho" loading="lazy" decoding="async">
                     <div class="elogio-texto">
                         <h3>Parece até modelo</h3>
                         <p>Uma das minhas fotos favoritas, tão linda e atraente. Você não sabe o quanto eu me sinto atraido por você, não só pela sua beleza mas estamos aqui pra exaltar isso. Lindona da minha vida</p>
@@ -179,7 +185,7 @@
         </section>
 
         <section class="surprise-section">
-            <button id="surprise-btn">Tenho uma última coisinha pra você... ❤️</button>
+            <button id="surprise-btn" type="button">Tenho uma última coisinha pra você... ❤️</button>
             
             <div id="surprise-content" class="hidden-letter">
                 <h3>Para a mulher da minha vida,</h3>
@@ -193,22 +199,24 @@
     </main>
 
     <div id="image-modal" class="modal" aria-hidden="true">
-        <img id="modal-img" src="" alt="Preview em tela cheia">
+        <img id="modal-img" alt="Preview em tela cheia">
     </div>
 
     <div id="gallery-modal" class="modal" aria-hidden="true">
-        <span id="close-btn" aria-label="Fechar">&times;</span>
+        <span id="close-btn" role="button" tabindex="0" aria-label="Fechar">&times;</span>
 
-        <button id="story-prev-btn" class="story-nav-btn" aria-label="Anterior">&#10094;</button>
+        <button id="story-prev-btn" type="button" class="story-nav-btn" aria-label="Anterior">&#10094;</button>
 
-        <img id="gallery-modal-img" src="" alt="Ta faltando foto">
-        <video id="gallery-modal-vid" src="" autoplay loop playsinline style="display: none;"></video>
+        <img id="gallery-modal-img" alt="Foto ampliada">
+        <video id="gallery-modal-vid" autoplay loop playsinline style="display: none;"></video>
 
-        <button id="story-next-btn" class="story-nav-btn" aria-label="Próximo">&#10095;</button>
+        <button id="story-next-btn" type="button" class="story-nav-btn" aria-label="Próximo">&#10095;</button>
 
         <p id="gallery-modal-caption"></p>
     </div>
 
     <script src="script.js" defer></script>
 </body>
+</html>
+
 </html>
