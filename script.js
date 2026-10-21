@@ -21,7 +21,6 @@ function fecharPreviewCard() {
 }
 
 if (containerCards && modal && modalImg) {
-    // Suporte Mobile (permite rolar a tela normalmente e abre ao segurar por 150ms)
     containerCards.addEventListener('touchstart', (e) => {
         const img = e.target.closest('.card img');
         if (!img) return;
@@ -32,7 +31,6 @@ if (containerCards && modal && modalImg) {
     containerCards.addEventListener('touchend', fecharPreviewCard);
     containerCards.addEventListener('touchcancel', fecharPreviewCard);
 
-    // Suporte Desktop
     containerCards.addEventListener('mousedown', (e) => {
         const img = e.target.closest('.card img');
         if (!img) return;
@@ -78,7 +76,6 @@ function fecharGeralModal() {
     galleryModal.setAttribute('aria-hidden', 'true');
 }
 
-// Clique na Galeria de Favoritos (Event Delegation)
 if (galeriaFotos) {
     galeriaFotos.addEventListener('click', (e) => {
         const img = e.target.closest('img');
@@ -247,10 +244,8 @@ function mostrarStoryAtual() {
         prevBtn.classList.toggle('escondido', currentStoryIndex === 0);
     }
 
-    // Pré-carrega o próximo story em segundo plano para transição instantânea
     preCarregarProximoStory(listaMidias, currentStoryIndex);
 
-    // Tratamento para slide final apenas com texto
     if (itemAtual.src === '') {
         if (galleryModalVid) {
             galleryModalVid.style.display = 'none';
@@ -337,7 +332,7 @@ if (closeBtn) {
 }
 
 // ==========================================
-// 5. LÓGICA DO CONTADOR DE TEMPO JUNTOS (OTIMIZADO)
+// 5. LÓGICA DO CONTADOR DE TEMPO JUNTOS
 // ==========================================
 const dataInicio = new Date('2024-10-19T00:00:00').getTime();
 const elDias = document.getElementById('cnt-dias');
@@ -353,7 +348,6 @@ function atualizarContador() {
     const minutos = String(Math.floor((diferenca % 3600000) / 60000)).padStart(2, '0');
     const segundos = String(Math.floor((diferenca % 60000) / 1000)).padStart(2, '0');
 
-    // Atualiza apenas os nós de texto que mudaram (evita reconstruir o DOM a cada segundo)
     if (elDias && elDias.textContent !== dias) elDias.textContent = dias;
     if (elHoras && elHoras.textContent !== horas) elHoras.textContent = horas;
     if (elMin && elMin.textContent !== minutos) elMin.textContent = minutos;
@@ -386,15 +380,201 @@ function criarCoracao() {
 }
 
 // ==========================================
-// 7. CONTROLE DA PLAYLIST (POP-UP)
+// 7. PLAYLIST + ILHA DINÂMICA (MINI PLAYER ESTILO IPHONE / SPOTIFY)
 // ==========================================
 const musicBtn = document.getElementById('music-btn');
+const fabIconIdle = document.getElementById('fab-icon-idle');
+const fabIconPlaying = document.getElementById('fab-icon-playing');
+
 const playlistModal = document.getElementById('playlist-modal');
 const closePlaylistBtn = document.getElementById('close-playlist-btn');
-const pauseTrackBtn = document.getElementById('pause-track-btn');
-const bgMusic = document.getElementById('bg-music');
 const playlistOptions = document.querySelector('.playlist-options');
-const trackBtns = document.querySelectorAll('.track-btn');
+const trackBtns = Array.from(document.querySelectorAll('.track-btn'));
+const bgMusic = document.getElementById('bg-music');
+
+// Elementos da Ilha Dinâmica
+const dynamicIsland = document.getElementById('dynamic-island');
+const islandOpenPlaylist = document.getElementById('island-open-playlist');
+const islandEq = document.getElementById('island-eq');
+const islandTrackName = document.getElementById('island-track-name');
+const islandPrevBtn = document.getElementById('island-prev-btn');
+const islandPlayBtn = document.getElementById('island-play-btn');
+const islandNextBtn = document.getElementById('island-next-btn');
+const islandVolBtn = document.getElementById('island-vol-btn');
+const iconPlay = document.getElementById('icon-play');
+const iconPause = document.getElementById('icon-pause');
+const iconVolHigh = document.getElementById('icon-vol-high');
+const iconVolMute = document.getElementById('icon-vol-mute');
+const islandVolumePanel = document.getElementById('island-volume-panel');
+const islandVolumeSlider = document.getElementById('island-volume-slider');
+const islandVolumePct = document.getElementById('island-volume-pct');
+
+let currentTrackIndex = -1;
+let audioCtx = null;
+let gainNode = null;
+
+// Inicializa controle de ganho Web Audio (permite controlar o volume do site mesmo no iOS)
+function garantirControleVolumeWebAudio() {
+    if (audioCtx || !bgMusic) return;
+    if (window.location.protocol === 'file:') return; // Evita restrição CORS em arquivo local
+    try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+        audioCtx = new AudioContextClass();
+        const source = audioCtx.createMediaElementSource(bgMusic);
+        gainNode = audioCtx.createGain();
+        gainNode.gain.value = parseFloat(islandVolumeSlider ? islandVolumeSlider.value : 0.8);
+        source.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+    } catch (_) {
+        // Caso o navegador não permita, usa bgMusic.volume normalmente
+    }
+}
+
+function aplicarVolumeSite(valor) {
+    const vol = Math.max(0, Math.min(1, parseFloat(valor)));
+    if (bgMusic) {
+        bgMusic.volume = vol;
+        bgMusic.muted = (vol === 0);
+    }
+    if (gainNode) {
+        gainNode.gain.value = vol;
+    }
+    if (islandVolumePct) {
+        islandVolumePct.textContent = `${Math.round(vol * 100)}%`;
+    }
+    if (iconVolHigh && iconVolMute) {
+        iconVolHigh.style.display = vol === 0 ? 'none' : 'block';
+        iconVolMute.style.display = vol === 0 ? 'block' : 'none';
+    }
+}
+
+// Configura volume inicial (80%)
+aplicarVolumeSite(0.8);
+
+function atualizarInterfacePlayer(estaTocando) {
+    // Ícone do botão flutuante inferior
+    if (musicBtn && fabIconIdle && fabIconPlaying) {
+        musicBtn.classList.toggle('is-playing', estaTocando);
+        fabIconIdle.style.display = estaTocando ? 'none' : 'block';
+        fabIconPlaying.style.display = estaTocando ? 'flex' : 'none';
+    }
+
+    // Ícones e equalizador da Ilha Dinâmica
+    if (iconPlay && iconPause) {
+        iconPlay.style.display = estaTocando ? 'none' : 'block';
+        iconPause.style.display = estaTocando ? 'block' : 'none';
+    }
+    if (islandEq) {
+        islandEq.classList.toggle('playing', estaTocando);
+    }
+
+    // Destaque na lista da playlist
+    trackBtns.forEach((btn, idx) => {
+        btn.classList.toggle('playing', idx === currentTrackIndex && estaTocando);
+    });
+}
+
+function mostrarIlhaDinamica() {
+    if (!dynamicIsland) return;
+    dynamicIsland.classList.remove('dismissing');
+    dynamicIsland.style.setProperty('--drag-x', '0px');
+    dynamicIsland.style.opacity = '';
+    dynamicIsland.classList.add('active');
+    dynamicIsland.setAttribute('aria-hidden', 'false');
+}
+
+function fecharIlhaEPausar() {
+    if (bgMusic) {
+        bgMusic.pause();
+        bgMusic.currentTime = 0;
+    }
+    currentTrackIndex = -1;
+    atualizarInterfacePlayer(false);
+
+    if (islandVolumePanel) {
+        islandVolumePanel.classList.remove('open');
+        islandVolumePanel.setAttribute('aria-hidden', 'true');
+    }
+
+    if (dynamicIsland) {
+        dynamicIsland.classList.remove('active', 'dragging');
+        dynamicIsland.classList.add('dismissing');
+        dynamicIsland.setAttribute('aria-hidden', 'true');
+        setTimeout(() => {
+            dynamicIsland.classList.remove('dismissing');
+            dynamicIsland.style.setProperty('--drag-x', '0px');
+            dynamicIsland.style.opacity = '';
+        }, 380);
+    }
+}
+
+function tocarFaixaPorIndice(index) {
+    if (!bgMusic || trackBtns.length === 0) return;
+
+    currentTrackIndex = (index + trackBtns.length) % trackBtns.length;
+    const btnAlvo = trackBtns[currentTrackIndex];
+    const musicSrc = btnAlvo.dataset.src;
+    const nomeFaixa = btnAlvo.textContent.trim();
+
+    garantirControleVolumeWebAudio();
+    if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume().catch(() => {});
+    }
+
+    if (bgMusic.getAttribute('src') !== musicSrc) {
+        bgMusic.src = musicSrc;
+    }
+
+    if (islandTrackName) {
+        islandTrackName.textContent = nomeFaixa;
+    }
+
+    mostrarIlhaDinamica();
+
+    bgMusic.play()
+        .then(() => atualizarInterfacePlayer(true))
+        .catch(() => atualizarInterfacePlayer(false));
+}
+
+function alternarPlayPause() {
+    if (!bgMusic) return;
+
+    if (currentTrackIndex === -1) {
+        tocarFaixaPorIndice(0);
+        return;
+    }
+
+    if (bgMusic.paused) {
+        if (audioCtx && audioCtx.state === 'suspended') {
+            audioCtx.resume().catch(() => {});
+        }
+        bgMusic.play()
+            .then(() => atualizarInterfacePlayer(true))
+            .catch(() => {});
+    } else {
+        bgMusic.pause();
+        atualizarInterfacePlayer(false);
+    }
+}
+
+function proximaFaixa() {
+    tocarFaixaPorIndice(currentTrackIndex + 1);
+}
+
+function faixaAnterior() {
+    if (bgMusic && bgMusic.currentTime > 3) {
+        bgMusic.currentTime = 0;
+    } else {
+        tocarFaixaPorIndice(currentTrackIndex <= 0 ? trackBtns.length - 1 : currentTrackIndex - 1);
+    }
+}
+
+function abrirPlaylist() {
+    if (!playlistModal) return;
+    playlistModal.classList.add('active');
+    playlistModal.setAttribute('aria-hidden', 'false');
+}
 
 function fecharPlaylist() {
     if (!playlistModal) return;
@@ -402,53 +582,161 @@ function fecharPlaylist() {
     playlistModal.setAttribute('aria-hidden', 'true');
 }
 
-if (musicBtn && playlistModal) {
+// Eventos do Modal de Playlist
+if (musicBtn) {
     musicBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        playlistModal.classList.add('active');
-        playlistModal.setAttribute('aria-hidden', 'false');
+        abrirPlaylist();
     });
+}
 
-    if (closePlaylistBtn) {
-        closePlaylistBtn.addEventListener('click', fecharPlaylist);
-    }
+if (islandOpenPlaylist) {
+    islandOpenPlaylist.addEventListener('click', () => {
+        abrirPlaylist();
+    });
+}
 
+if (closePlaylistBtn) {
+    closePlaylistBtn.addEventListener('click', fecharPlaylist);
+}
+
+if (playlistModal) {
     playlistModal.addEventListener('click', (e) => {
         if (e.target === playlistModal) fecharPlaylist();
     });
 }
 
-if (playlistOptions && bgMusic) {
+// Seleção de música na lista: toca a música, fecha o modal e abre a Ilha Dinâmica no topo
+if (playlistOptions) {
     playlistOptions.addEventListener('click', (e) => {
         const btn = e.target.closest('.track-btn');
         if (!btn) return;
 
-        const musicSrc = btn.dataset.src;
-
-        // Só troca o atributo src se for uma música diferente (permite despausar de onde parou)
-        if (bgMusic.getAttribute('src') !== musicSrc) {
-            bgMusic.src = musicSrc;
+        const idx = trackBtns.indexOf(btn);
+        if (idx !== -1) {
+            tocarFaixaPorIndice(idx);
+            fecharPlaylist();
         }
-
-        if (bgMusic.paused) {
-            bgMusic.play().catch(() => {});
-        }
-
-        if (musicBtn) musicBtn.textContent = '🔊';
-        trackBtns.forEach(b => b.classList.toggle('playing', b === btn));
     });
 }
 
-if (pauseTrackBtn && bgMusic) {
-    pauseTrackBtn.addEventListener('click', () => {
-        bgMusic.pause();
-        if (musicBtn) musicBtn.textContent = '🎵';
-        trackBtns.forEach(b => b.classList.remove('playing'));
+// Controles da Ilha Dinâmica
+if (islandPlayBtn) {
+    islandPlayBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        alternarPlayPause();
     });
+}
+
+if (islandNextBtn) {
+    islandNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        proximaFaixa();
+    });
+}
+
+if (islandPrevBtn) {
+    islandPrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        faixaAnterior();
+    });
+}
+
+if (islandVolBtn && islandVolumePanel) {
+    islandVolBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const aberto = islandVolumePanel.classList.toggle('open');
+        islandVolumePanel.setAttribute('aria-hidden', String(!aberto));
+    });
+}
+
+if (islandVolumeSlider) {
+    islandVolumeSlider.addEventListener('input', (e) => {
+        aplicarVolumeSite(e.target.value);
+    });
+}
+
+if (bgMusic) {
+    // Avança automaticamente para a próxima música ao terminar
+    bgMusic.addEventListener('ended', proximaFaixa);
 }
 
 // ==========================================
-// 8. NAVEGAÇÃO POR TECLADO (ACESSIBILIDADE / DESKTOP)
+// 8. GESTO DE ARRASTAR A ILHA PARA A ESQUERDA (FECHAR E PARAR MÚSICA)
+// ==========================================
+if (dynamicIsland) {
+    let startX = 0;
+    let currentX = 0;
+    let isDraggingIsland = false;
+
+    function iniciarArrasto(clientX, target) {
+        // Não inicia arrasto da ilha se estiver mexendo na barra de volume
+        if (target.closest('#island-volume-slider')) return;
+        startX = clientX;
+        currentX = 0;
+        isDraggingIsland = true;
+        dynamicIsland.classList.add('dragging');
+    }
+
+    function moverArrasto(clientX) {
+        if (!isDraggingIsland) return;
+        const deltaX = clientX - startX;
+        // Permite arrastar para a esquerda (com leve resistência se puxar para a direita)
+        currentX = deltaX < 0 ? deltaX : deltaX * 0.2;
+        dynamicIsland.style.setProperty('--drag-x', `${currentX}px`);
+
+        if (currentX < 0) {
+            const opacidade = Math.max(0.25, 1 - Math.abs(currentX) / 180);
+            dynamicIsland.style.opacity = String(opacidade);
+        }
+    }
+
+    function finalizarArrasto() {
+        if (!isDraggingIsland) return;
+        isDraggingIsland = false;
+        dynamicIsland.classList.remove('dragging');
+
+        // Se arrastou mais de 65px para a esquerda, fecha a ilha e para a música
+        if (currentX < -65) {
+            fecharIlhaEPausar();
+        } else {
+            dynamicIsland.style.setProperty('--drag-x', '0px');
+            dynamicIsland.style.opacity = '';
+        }
+        currentX = 0;
+    }
+
+    // Eventos Touch (Celular)
+    dynamicIsland.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+            iniciarArrasto(e.touches[0].clientX, e.target);
+        }
+    }, { passive: true });
+
+    dynamicIsland.addEventListener('touchmove', (e) => {
+        if (isDraggingIsland && e.touches.length === 1) {
+            moverArrasto(e.touches[0].clientX);
+        }
+    }, { passive: true });
+
+    dynamicIsland.addEventListener('touchend', finalizarArrasto);
+    dynamicIsland.addEventListener('touchcancel', finalizarArrasto);
+
+    // Eventos Mouse (Computador)
+    dynamicIsland.addEventListener('mousedown', (e) => {
+        if (e.target.closest('button')) return;
+        iniciarArrasto(e.clientX, e.target);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (isDraggingIsland) moverArrasto(e.clientX);
+    });
+
+    window.addEventListener('mouseup', finalizarArrasto);
+}
+
+// ==========================================
+// 9. NAVEGAÇÃO POR TECLADO (ACESSIBILIDADE / DESKTOP)
 // ==========================================
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
